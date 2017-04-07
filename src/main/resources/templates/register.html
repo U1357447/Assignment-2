@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--<meta charset="UTF-8">-->
+    <title>MaxThreads - Register</title>
+</head>
+<body>
+    <h1>Registration</h1>
+
+    <form action="#" th:action="@{/user/register}" th:object="${user}" method="post">
+        <p>First Name</p>
+        <input type="text" th:field="*{firstname}"/>
+        <p>Last Name</p>
+        <input type="text" th:field="*{lastname}"/>
+        <p>Password</p>
+        <input type="text" th:field="*{password}"/>
+        <br/><br/>
+
+        <input type="submit" value="Register"/>
+    </form>
+</body>
+</html>
