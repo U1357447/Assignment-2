@@ -1,5 +1,7 @@
 package com.assignment2.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,8 +16,11 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
+    @NotEmpty
     String firstname;
+    @NotEmpty
     String lastname;
+    @NotEmpty
     String password;
 
     public Long getId() {

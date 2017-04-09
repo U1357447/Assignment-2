@@ -4,7 +4,10 @@ import com.assignment2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * Created by u1357447 on 07/04/17.
@@ -23,7 +26,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(Model model, @ModelAttribute("user") User user){
+    public String register(Model model, @Valid @ModelAttribute("user") User user, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("user", user);
+            model.addAttribute("message", "Please provide information in each field");
+            return "register";
+        }
         userService.save(user);
         return "redirect:/";
     }

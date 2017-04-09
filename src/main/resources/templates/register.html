@@ -18,5 +18,9 @@
 
         <input type="submit" value="Register"/>
     </form>
+
+    <div th:if="${message} != null">
+        <p><span th:text="${message}" /></p>
+    </div>
 </body>
 </html>
