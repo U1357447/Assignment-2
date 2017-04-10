@@ -2,20 +2,19 @@ package com.assignment2.domain;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by u1357447 on 07/04/17.
  */
-@Entity
+@Entity @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"username"}, name = "notunique")})
 public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
+    @NotEmpty @Column(unique = true)
+    String Username;
     @NotEmpty
     String firstname;
     @NotEmpty
@@ -30,6 +29,12 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) { Username = username; }
 
     public String getFirstname() {
         return firstname;

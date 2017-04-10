@@ -1,4 +1,5 @@
 package com.assignment2.controller;
+import com.assignment2.domain.LoginForm;
 import com.assignment2.domain.User;
 import com.assignment2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,23 @@ public class UserController {
             return "register";
         }
         userService.save(user);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginView(Model model){
+        LoginForm user = new LoginForm();
+        model.addAttribute("user", user);
+        return "login";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login(Model model, @Valid @ModelAttribute("user") LoginForm user, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("user", user);
+            model.addAttribute("message", "Username and password combination incorrect");
+            return "login";
+        }
         return "redirect:/";
     }
 
