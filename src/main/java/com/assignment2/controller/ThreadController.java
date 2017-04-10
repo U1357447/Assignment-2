@@ -22,12 +22,23 @@ public class ThreadController {
     @Autowired
     ThreadService threadService;
 
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String createView(Model model, HttpSession session){
+        if(session.getAttribute("login") == null) {
+            return "index";
+        }
+
+        Thread thread = new Thread();
+        model.addAttribute("thread", thread);
+        return "createThread";
+    }
+
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String register(Model model, @Valid @ModelAttribute("thread") Thread thread, BindingResult bindingResult, HttpSession session){
+    public String create(Model model, @Valid @ModelAttribute("thread") Thread thread, BindingResult bindingResult){
         if(bindingResult.hasErrors()) {
             model.addAttribute("thread", thread);
             model.addAttribute("message", "Please provide information in each field");
-            return "index";
+            return "createThread";
         }
         threadService.save(thread);
         return "redirect:/";

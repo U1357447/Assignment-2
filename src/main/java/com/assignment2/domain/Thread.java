@@ -26,11 +26,11 @@ public class Thread {
     @NotEmpty
     String timeUpdated;
 
-    public Long getId() {
+    public Long getThreadID() {
         return threadID;
     }
 
-    public void setId(Long threadID) {
+    public void setThreadID(Long threadID) {
         this.threadID = threadID;
     }
 

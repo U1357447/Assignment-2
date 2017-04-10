@@ -5,6 +5,8 @@ import com.assignment2.domain.ThreadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by u1357447 on 10/04/17.
  */
@@ -13,7 +15,11 @@ public class ThreadService {
     @Autowired
     ThreadRepository threadRepository;
 
-    public Thread save(Thread u){
-        return threadRepository.save(u);
+    public Thread save(Thread thread){
+        return threadRepository.save(thread);
+    }
+
+    public List<Thread> findAll() {
+        return threadRepository.findAll();
     }
 }
