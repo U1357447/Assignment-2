@@ -7,14 +7,14 @@ import javax.persistence.*;
 /**
  * Created by u1357447 on 07/04/17.
  */
-@Entity @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"username"}, name = "notunique")})
+@Entity
 public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @NotEmpty @Column(unique = true)
-    String Username;
+    @NotEmpty
+    String username;
     @NotEmpty
     String firstname;
     @NotEmpty
@@ -31,10 +31,10 @@ public class User {
     }
 
     public String getUsername() {
-        return Username;
+        return username;
     }
 
-    public void setUsername(String username) { Username = username; }
+    public void setUsername(String username) { this.username = username; }
 
     public String getFirstname() {
         return firstname;

@@ -33,6 +33,13 @@ public class UserController {
             model.addAttribute("message", "Please provide information in each field");
             return "register";
         }
+
+        if(userService.checkUsername(user) == true){
+            model.addAttribute("user", user);
+            model.addAttribute("message", "Username already exists");
+            return "register";
+        }
+
         userService.save(user);
         return "redirect:/";
     }
@@ -51,6 +58,13 @@ public class UserController {
             model.addAttribute("message", "Username and password combination incorrect");
             return "login";
         }
+
+        if(userService.validateLogin(user) == false) {
+            model.addAttribute("user", user);
+            model.addAttribute("message", "Username and password combination incorrect");
+            return "login";
+        }
+
         return "redirect:/";
     }
 
