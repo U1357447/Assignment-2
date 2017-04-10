@@ -5,6 +5,23 @@
     <title>MaxThreads</title>
 </head>
 <body>
+    <div th:if="${session.login != null}">
+        <h1>Create Thread</h1>
+        <form action="#" th:action="@{/thread/create}" th:object="${thread}" method="post">
+            <p>Heading</p>
+            <input type="text" th:field="*{heading}"/>
+            <p>Last Name</p>
+            <input type="text" th:field="*{content}"/>
+
+            <input type="hidden" th:field="*{ownerID}" th:value="${session.login}"/>
+            <input type="text" th:field="*{timeCreated}" th:value="${#dates.format(#dates.createNow(), 'dd/MM/YYYY HH:mm:ss')}"/>
+            <input type="text" th:field="*{timeUpdated}" th:value="${#dates.format(#dates.createNow(), 'dd/MM/YYYY HH:mm:ss')}"/>
+            <br/><br/>
+
+            <input type="submit" value="Created Thread"/>
+        </form>
+    </div>
+
     <table>
         <tr>
             <th>ID</th>

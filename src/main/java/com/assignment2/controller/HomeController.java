@@ -24,9 +24,11 @@ public class HomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model, HttpSession session){
-        if(session.getAttribute("login") == null){
-            
+        if(session.getAttribute("login") != null){
+            Thread thread = new Thread();
+            model.addAttribute("thread", thread);
         }
+
         List<User> users = userService.findAll();
 
         model.addAttribute("users", users);

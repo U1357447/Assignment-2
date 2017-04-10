@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 /**
@@ -52,7 +53,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(Model model, @Valid @ModelAttribute("user") LoginForm user, BindingResult bindingResult){
+    public String login(Model model, @Valid @ModelAttribute("user") LoginForm user, BindingResult bindingResult, HttpSession session){
         if(bindingResult.hasErrors()) {
             model.addAttribute("user", user);
             model.addAttribute("message", "Username and password combination incorrect");
@@ -65,13 +66,22 @@ public class UserController {
             return "login";
         }
 
+        Long id = userService.getUserID(user);
+        session.setAttribute("login", id);
+
+        Thread thread = new Thread();
+        model.addAttribute("thread", thread);
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logoutView(Model model, HttpSession session){
+        session.removeAttribute("login");
+        return "redirect:/user/login";
     }
 
     @RequestMapping(value = "/delete/{user}", method = RequestMethod.GET)
     public String delete(@PathVariable User user){
-        String name = user.getFirstname() + " " + user.getLastname();
-
         userService.delete(user);
         return "redirect:/";
     }
