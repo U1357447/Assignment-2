@@ -29,5 +29,28 @@
             <td th:text="${thread.timeUpdated}"></td>
         </tr>
     </table>
+    <hr/>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Content</th>
+            <th>ThreadID</th>
+            <th>OwnerID</th>
+            <th>timeCreated</th>
+            <th>timeUpdated</th>
+        </tr>
+        <tr th:each="reply : ${replies}">
+            <td th:text="${reply.replyID}"></td>
+            <td th:text="${reply.content}"></td>
+            <td th:text="${reply.threadID}"></td>
+            <td th:text="${reply.ownerID}"></td>
+            <td th:text="${reply.timeCreated}"></td>
+            <td th:text="${reply.timeUpdated}"></td>
+        </tr>
+    </table>
+
+    <div th:if="${message} != null">
+        <p><span th:text="${message}" /></p>
+    </div>
 </body>
 </html>

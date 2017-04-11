@@ -18,9 +18,9 @@ public class Reply {
     @NotEmpty
     String content;
     @NotEmpty
-    Long ownerID;
+    String ownerID;
     @NotEmpty
-    Long threadID;
+    String threadID;
     @NotEmpty
     String timeCreated;
     @NotEmpty
@@ -42,19 +42,19 @@ public class Reply {
         this.content = content;
     }
 
-    public Long getOwnerID() {
+    public String getOwnerID() {
         return ownerID;
     }
 
-    public void setOwnerID(Long ownerID) {
+    public void setOwnerID(String ownerID) {
         this.ownerID = ownerID;
     }
 
-    public Long getThreadID() {
+    public String getThreadID() {
         return threadID;
     }
 
-    public void setThreadID(Long threadID) {
+    public void setThreadID(String threadID) {
         this.threadID = threadID;
     }
 

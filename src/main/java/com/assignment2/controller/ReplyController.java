@@ -50,7 +50,7 @@ public class ReplyController {
             model.addAttribute("thread", thread);
             model.addAttribute("type", "danger");
             model.addAttribute("message", "Please provide the body for the new note.");
-            return "replies/createReplies";
+            return "replies/createReply";
         }
 
         replyService.save(reply);
@@ -64,7 +64,7 @@ public class ReplyController {
         model.addAttribute("type", "success");
         model.addAttribute("message", "Reply added successfully");
 
-        return "threads/viewThreads";
+        return "threads/viewThread";
     }
 
 }

@@ -6,7 +6,7 @@
 <body>
     <div th:if="${session.login != null}">
         <h1>Reply to Thread</h1>
-        <form action="#" th:action="@{/thread/}+${thread.threadID}" th:object="${reply}" method="post">
+        <form action="#" th:action="@{/reply/}+${thread.threadID}" th:object="${reply}" method="post">
             <input type="text" th:field="*{content}"/>
 
             <input type="hidden" th:id="threadID" th:name="threadID" th:value="${thread.threadID}"/>
