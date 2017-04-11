@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MaxThreads - Reply</title>
+</head>
+<body>
+    <div th:if="${session.login != null}">
+        <h1>Reply to Thread</h1>
+        <form action="#" th:action="@{/thread/}+${thread.threadID}" th:object="${reply}" method="post">
+            <input type="text" th:field="*{content}"/>
+
+            <input type="hidden" th:id="threadID" th:name="threadID" th:value=""/>
+            <input type="hidden" th:id="ownerID" th:name="ownerID" th:value="${session.login}"/>
+            <input type="hidden" th:id="timeCreated" th:name="timeCreated" th:value="${#dates.format(#dates.createNow(), 'dd/MM/YYYY HH:mm:ss')}"/>
+            <input type="hidden" th:id="timeUpdated" th:name="timeUpdated" th:value="${#dates.format(#dates.createNow(), 'dd/MM/YYYY HH:mm:ss')}"/>
+            <br/><br/>
+
+            <input type="submit" value="Reply"/>
+        </form>
+    </div>
+    <div th:if="${message} != null">
+        <p><span th:text="${message}" /></p>
+    </div>
+</body>
+</html>
