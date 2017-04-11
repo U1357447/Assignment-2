@@ -9,6 +9,7 @@
 
                 <input type="hidden" th:id="threadID" th:name="threadID" th:value="${thread.threadID}"/>
                 <input type="hidden" th:id="ownerID" th:name="ownerID" th:value="${session.login}"/>
+                <input type="hidden" th:id="ownerName" th:name="ownerName" th:value="${session.loginName}"/>
                 <input type="hidden" th:id="timeCreated" th:name="timeCreated" th:value="${#dates.format(#dates.createNow(), 'dd/MM/YYYY HH:mm:ss')}"/>
                 <input type="hidden" th:id="timeUpdated" th:name="timeUpdated" th:value="${#dates.format(#dates.createNow(), 'dd/MM/YYYY HH:mm:ss')}"/>
                 <br/><br/>

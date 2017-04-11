@@ -21,6 +21,8 @@ public class Thread {
     @NotEmpty
     String ownerID;
     @NotEmpty
+    String ownerName;
+    @NotEmpty
     String timeCreated;
     @NotEmpty
     String timeUpdated;
@@ -56,6 +58,10 @@ public class Thread {
     public void setOwnerID(String ownerID) {
         this.ownerID = ownerID;
     }
+
+    public String getOwnerName() { return ownerName; }
+
+    public void setOwnerName(String ownerName) { this.ownerName = ownerName; }
 
     public String getTimeCreated() {
         return timeCreated;

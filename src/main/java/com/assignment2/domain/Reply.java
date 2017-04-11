@@ -20,6 +20,8 @@ public class Reply {
     @NotEmpty
     String ownerID;
     @NotEmpty
+    String ownerName;
+    @NotEmpty
     String threadID;
     @NotEmpty
     String timeCreated;
@@ -49,6 +51,10 @@ public class Reply {
     public void setOwnerID(String ownerID) {
         this.ownerID = ownerID;
     }
+
+    public String getOwnerName() { return ownerName; }
+
+    public void setOwnerName(String ownerName) { this.ownerName = ownerName; }
 
     public String getThreadID() {
         return threadID;
