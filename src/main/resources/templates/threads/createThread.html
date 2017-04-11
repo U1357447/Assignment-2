@@ -2,8 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>MaxThreads - Create Thread</title>
+    <th:block th:include="fragments/header :: headitems"></th:block>
 </head>
 <body>
+    <div th:replace="fragments/header :: header"></div>
     <div th:if="${session.login != null}">
         <h1>Create Thread</h1>
         <form action="#" th:action="@{/thread/create}" th:object="${thread}" method="post">
@@ -23,5 +25,7 @@
     <div th:if="${message} != null">
         <p><span th:text="${message}" /></p>
     </div>
+
+    <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

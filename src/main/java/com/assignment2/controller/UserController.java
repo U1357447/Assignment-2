@@ -67,7 +67,9 @@ public class UserController {
         }
 
         Long id = userService.getUserID(user);
+        String name = userService.getUserName(user);
         session.setAttribute("login", id);
+        session.setAttribute("loginName", name);
 
         Thread thread = new Thread();
         model.addAttribute("thread", thread);
@@ -77,6 +79,7 @@ public class UserController {
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logoutView(Model model, HttpSession session){
         session.removeAttribute("login");
+        session.removeAttribute("loginName");
         return "redirect:/user/login";
     }
 

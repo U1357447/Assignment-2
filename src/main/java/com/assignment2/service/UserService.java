@@ -42,4 +42,9 @@ public class UserService {
         User ret = userRepository.getUser(user.getUsername());
         return ret.getId();
     }
+
+    public String getUserName(LoginForm user){
+        User ret = userRepository.getUser(user.getUsername());
+        return ret.getFirstname() + " " + ret.getLastname();
+    }
 }

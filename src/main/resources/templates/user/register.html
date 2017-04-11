@@ -2,8 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>MaxThreads - Register</title>
+    <th:block th:include="fragments/header :: headitems"></th:block>
 </head>
 <body>
+    <div th:replace="fragments/header :: header"></div>
     <h1>Registration</h1>
 
     <form action="#" th:action="@{/user/register}" th:object="${user}" method="post">
@@ -23,5 +25,7 @@
     <div th:if="${message} != null">
         <p><span th:text="${message}" /></p>
     </div>
+
+    <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

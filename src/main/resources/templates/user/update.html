@@ -3,8 +3,10 @@
 <head>
     <!--<meta charset="UTF-8">-->
     <title>MaxThreads - Update</title>
+    <th:block th:include="fragments/header :: headitems"></th:block>
 </head>
 <body>
+    <div th:replace="fragments/header :: header"></div>
     <h1>Update</h1>
 
     <form action="#" th:action="@{/user/update}" th:object="${user}" method="post">
@@ -21,5 +23,7 @@
 
         <input type="submit" value="Update"/>
     </form>
+
+    <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

@@ -52,5 +52,7 @@
     <div th:if="${message} != null">
         <p><span th:text="${message}" /></p>
     </div>
+
+    <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

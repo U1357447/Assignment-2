@@ -30,7 +30,7 @@ public class ThreadController {
 
         Thread thread = new Thread();
         model.addAttribute("thread", thread);
-        return "createThread";
+        return "threads/createThread";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -38,7 +38,7 @@ public class ThreadController {
         if(bindingResult.hasErrors()) {
             model.addAttribute("thread", thread);
             model.addAttribute("message", "Please provide information in each field");
-            return "createThread";
+            return "threads/createThread";
         }
         threadService.save(thread);
         return "redirect:/";
