@@ -26,12 +26,12 @@ public class ReplyController {
     @Autowired
     ReplyService replyService;
 
-    @RequestMapping(value = "/note/{card}", method = RequestMethod.GET)
-    public String note(Model model, @PathVariable Thread thread){
+    @RequestMapping(value = "/{thread}", method = RequestMethod.GET)
+    public String viewThread(Model model, @PathVariable Thread thread){
         model.addAttribute("reply", new Reply());
         model.addAttribute("replies", thread.getReplies());
         model.addAttribute("thread", thread);
-        return "viewThread";
+        return "threads/viewThread";
     }
 
 

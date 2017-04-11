@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>MaxThreads - Thread</title>
+    <th:block th:include="fragments/header :: headitems"></th:block>
+</head>
+<body>
+    <div th:replace="fragments/header :: header"></div>
+
+    <div th:if="${session.login != null}">
+        <a th:href="#">Reply</a>
+    </div>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Heading</th>
+            <th>Content</th>
+            <th>OwnerID</th>
+            <th>timeCreated</th>
+            <th>timeUpdated</th>
+        </tr>
+        <tr>
+            <td th:text="${thread.threadID}"></td>
+            <td th:text="${thread.heading}"></td>
+            <td th:text="${thread.content}"></td>
+            <td th:text="${thread.ownerID}"></td>
+            <td th:text="${thread.timeCreated}"></td>
+            <td th:text="${thread.timeUpdated}"></td>
+        </tr>
+    </table>
+</body>
+</html>
