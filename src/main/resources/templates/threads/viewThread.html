@@ -8,10 +8,8 @@
     <div th:replace="fragments/header :: header"></div>
 
     <div th:if="${session.login != null}">
-        <a th:href="#">Reply</a>
+        <a href="#" th:href="@{/reply/}+${thread.threadID}">Reply</a>
     </div>
-
-    <a href="#" th:href="@{/reply/}+${thread.threadID}">Reply</a>
 
     <table border="1">
         <tr>
