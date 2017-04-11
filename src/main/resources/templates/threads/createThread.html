@@ -1,31 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>MaxThreads - Create Thread</title>
-    <th:block th:include="fragments/header :: headitems"></th:block>
-</head>
-<body>
-    <div th:replace="fragments/header :: header"></div>
-    <div th:if="${session.login != null}">
-        <h1>Create Thread</h1>
-        <form action="#" th:action="@{/thread/create}" th:object="${thread}" method="post">
-            <p>Heading</p>
-            <input type="text" th:field="*{heading}"/>
-            <p>Content</p>
-            <input type="text" th:field="*{content}"/>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layout/layout :: page">
 
-            <input type="hidden" th:id="ownerID" th:name="ownerID" th:value="${session.login}"/>
-            <input type="hidden" th:id="timeCreated" th:name="timeCreated" th:value="${#dates.format(#dates.createNow(), 'dd/MM/YYYY HH:mm:ss')}"/>
-            <input type="hidden" th:id="timeUpdated" th:name="timeUpdated" th:value="${#dates.format(#dates.createNow(), 'dd/MM/YYYY HH:mm:ss')}"/>
-            <br/><br/>
+    <div th:fragment="content">
+        <div th:if="${session.login != null}">
+            <h1>Create Thread</h1>
+            <form action="#" th:action="@{/thread/create}" th:object="${thread}" method="post">
+                <p>Heading</p>
+                <input type="text" th:field="*{heading}"/>
+                <p>Content</p>
+                <input type="text" th:field="*{content}"/>
 
-            <input type="submit" value="Create Thread"/>
-        </form>
+                <input type="hidden" th:id="ownerID" th:name="ownerID" th:value="${session.login}"/>
+                <input type="hidden" th:id="timeCreated" th:name="timeCreated" th:value="${#dates.format(#dates.createNow(), 'dd/MM/YYYY HH:mm:ss')}"/>
+                <input type="hidden" th:id="timeUpdated" th:name="timeUpdated" th:value="${#dates.format(#dates.createNow(), 'dd/MM/YYYY HH:mm:ss')}"/>
+                <br/><br/>
+
+                <input type="submit" value="Create Thread"/>
+            </form>
+        </div>
+        <div th:if="${message} != null">
+            <p><span th:text="${message}" /></p>
+        </div>
     </div>
-    <div th:if="${message} != null">
-        <p><span th:text="${message}" /></p>
-    </div>
-
-    <div th:replace="fragments/footer :: footer"></div>
-</body>
 </html>

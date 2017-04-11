@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      th:fragment="page">
+<head>
+    <title>MaxThreads</title>
+    <th:block th:include="fragments/header :: headitems"></th:block>
+</head>
+<body>
+<div class="full-height">
+    <div th:include="fragments/header :: header"/>
+
+    <div class="container content-height">
+        <div th:include="this :: content"/>
+    </div>
+
+    <div class="content">
+        <div th:include="fragments/footer :: footer"/>
+    </div>
+</div>
+</body>
+</html>

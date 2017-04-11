@@ -1,31 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>MaxThreads - Register</title>
-    <th:block th:include="fragments/header :: headitems"></th:block>
-</head>
-<body>
-    <div th:replace="fragments/header :: header"></div>
-    <h1>Registration</h1>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layout/layout :: page">
 
-    <form action="#" th:action="@{/user/register}" th:object="${user}" method="post">
-        <p>First Name</p>
-        <input type="text" th:field="*{firstname}"/>
-        <p>Last Name</p>
-        <input type="text" th:field="*{lastname}"/>
-        <p>Username</p>
-        <input type="text" th:field="*{username}"/>
-        <p>Password</p>
-        <input type="text" th:field="*{password}"/>
-        <br/><br/>
+    <div th:fragment="content">
+        <h1>Registration</h1>
 
-        <input type="submit" value="Register"/>
-    </form>
+        <form action="#" th:action="@{/user/register}" th:object="${user}" method="post">
+            <p>First Name</p>
+            <input type="text" th:field="*{firstname}"/>
+            <p>Last Name</p>
+            <input type="text" th:field="*{lastname}"/>
+            <p>Username</p>
+            <input type="text" th:field="*{username}"/>
+            <p>Password</p>
+            <input type="text" th:field="*{password}"/>
+            <br/><br/>
 
-    <div th:if="${message} != null">
-        <p><span th:text="${message}" /></p>
+            <input type="submit" value="Register"/>
+        </form>
+
+        <div th:if="${message} != null">
+            <p><span th:text="${message}" /></p>
+        </div>
     </div>
-
-    <div th:replace="fragments/footer :: footer"></div>
-</body>
 </html>

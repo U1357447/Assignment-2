@@ -1,36 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>MaxThreads</title>
-    <th:block th:include="fragments/header :: headitems"></th:block>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layout/layout :: page">
 
-    <div th:replace="fragments/header :: header"></div>
+    <div th:fragment="content">
+        <div th:if="${session.login != null}">
+            <a th:href="@{/thread/create}">Create Thread</a>
+        </div>
 
-    <div th:if="${session.login != null}">
-        <a th:href="@{/thread/create}">Create Thread</a>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Heading</th>
+                <th>Content</th>
+                <th>OwnerID</th>
+                <th>timeCreated</th>
+                <th>timeUpdated</th>
+            </tr>
+            <tr th:each="thread : ${threads}">
+                <td th:text="${thread.threadID}"></td>
+                <td th:text="${thread.heading}"></td>
+                <td th:text="${thread.content}"></td>
+                <td th:text="${thread.ownerID}"></td>
+                <td th:text="${thread.timeCreated}"></td>
+                <td th:text="${thread.timeUpdated}"></td>
+            </tr>
+        </table>
     </div>
-
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Heading</th>
-            <th>Content</th>
-            <th>OwnerID</th>
-            <th>timeCreated</th>
-            <th>timeUpdated</th>
-        </tr>
-        <tr th:each="thread : ${threads}">
-            <td th:text="${thread.threadID}"></td>
-            <td th:text="${thread.heading}"></td>
-            <td th:text="${thread.content}"></td>
-            <td th:text="${thread.ownerID}"></td>
-            <td th:text="${thread.timeCreated}"></td>
-            <td th:text="${thread.timeUpdated}"></td>
-        </tr>
-    </table>
-
-    <div th:replace="fragments/footer :: footer"></div>
-</body>
 </html>

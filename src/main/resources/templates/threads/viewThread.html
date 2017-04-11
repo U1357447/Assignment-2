@@ -1,58 +1,51 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>MaxThreads - Thread</title>
-    <th:block th:include="fragments/header :: headitems"></th:block>
-</head>
-<body>
-    <div th:replace="fragments/header :: header"></div>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layout/layout :: page">
 
-    <div th:if="${session.login != null}">
-        <a href="#" th:href="@{/reply/}+${thread.threadID}">Reply</a>
+    <div th:fragment="content">
+        <div th:if="${session.login != null}">
+            <a href="#" th:href="@{/reply/}+${thread.threadID}">Reply</a>
+        </div>
+
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Heading</th>
+                <th>Content</th>
+                <th>OwnerID</th>
+                <th>timeCreated</th>
+                <th>timeUpdated</th>
+            </tr>
+            <tr>
+                <td th:text="${thread.threadID}"></td>
+                <td th:text="${thread.heading}"></td>
+                <td th:text="${thread.content}"></td>
+                <td th:text="${thread.ownerID}"></td>
+                <td th:text="${thread.timeCreated}"></td>
+                <td th:text="${thread.timeUpdated}"></td>
+            </tr>
+        </table>
+        <hr/>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Content</th>
+                <th>ThreadID</th>
+                <th>OwnerID</th>
+                <th>timeCreated</th>
+                <th>timeUpdated</th>
+            </tr>
+            <tr th:each="reply : ${replies}">
+                <td th:text="${reply.replyID}"></td>
+                <td th:text="${reply.content}"></td>
+                <td th:text="${reply.threadID}"></td>
+                <td th:text="${reply.ownerID}"></td>
+                <td th:text="${reply.timeCreated}"></td>
+                <td th:text="${reply.timeUpdated}"></td>
+            </tr>
+        </table>
+
+        <div th:if="${message} != null">
+            <p><span th:text="${message}" /></p>
+        </div>
     </div>
-
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Heading</th>
-            <th>Content</th>
-            <th>OwnerID</th>
-            <th>timeCreated</th>
-            <th>timeUpdated</th>
-        </tr>
-        <tr>
-            <td th:text="${thread.threadID}"></td>
-            <td th:text="${thread.heading}"></td>
-            <td th:text="${thread.content}"></td>
-            <td th:text="${thread.ownerID}"></td>
-            <td th:text="${thread.timeCreated}"></td>
-            <td th:text="${thread.timeUpdated}"></td>
-        </tr>
-    </table>
-    <hr/>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Content</th>
-            <th>ThreadID</th>
-            <th>OwnerID</th>
-            <th>timeCreated</th>
-            <th>timeUpdated</th>
-        </tr>
-        <tr th:each="reply : ${replies}">
-            <td th:text="${reply.replyID}"></td>
-            <td th:text="${reply.content}"></td>
-            <td th:text="${reply.threadID}"></td>
-            <td th:text="${reply.ownerID}"></td>
-            <td th:text="${reply.timeCreated}"></td>
-            <td th:text="${reply.timeUpdated}"></td>
-        </tr>
-    </table>
-
-    <div th:if="${message} != null">
-        <p><span th:text="${message}" /></p>
-    </div>
-
-    <div th:replace="fragments/footer :: footer"></div>
-</body>
 </html>
