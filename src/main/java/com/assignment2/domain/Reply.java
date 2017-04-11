@@ -13,33 +13,25 @@ import javax.persistence.Id;
 @Entity
 public class Reply {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    Long threadID;
+    Long replyID;
 
-    @NotEmpty
-    String heading;
     @NotEmpty
     String content;
     @NotEmpty
-    String ownerID;
+    Long ownerID;
+    @NotEmpty
+    Long threadID;
     @NotEmpty
     String timeCreated;
     @NotEmpty
     String timeUpdated;
 
-    public Long getThreadID() {
-        return threadID;
+    public Long getReplyID() {
+        return replyID;
     }
 
-    public void setThreadID(Long threadID) {
-        this.threadID = threadID;
-    }
-
-    public String getHeading() {
-        return heading;
-    }
-
-    public void setHeading(String heading) {
-        this.heading = heading;
+    public void setReplyID(Long replyID) {
+        this.replyID = replyID;
     }
 
     public String getContent() {
@@ -50,12 +42,20 @@ public class Reply {
         this.content = content;
     }
 
-    public String getOwnerID() {
+    public Long getOwnerID() {
         return ownerID;
     }
 
-    public void setOwnerID(String ownerID) {
+    public void setOwnerID(Long ownerID) {
         this.ownerID = ownerID;
+    }
+
+    public Long getThreadID() {
+        return threadID;
+    }
+
+    public void setThreadID(Long threadID) {
+        this.threadID = threadID;
     }
 
     public String getTimeCreated() {

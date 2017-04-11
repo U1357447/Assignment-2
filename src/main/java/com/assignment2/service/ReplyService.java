@@ -1,7 +1,7 @@
 package com.assignment2.service;
 
-import com.assignment2.domain.Thread;
-import com.assignment2.domain.ThreadRepository;
+import com.assignment2.domain.Reply;
+import com.assignment2.domain.ReplyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +13,13 @@ import java.util.List;
 @Service
 public class ReplyService {
     @Autowired
-    ThreadRepository threadRepository;
+    ReplyRepository replyRepository;
 
-    public Thread save(Thread thread){
-        return threadRepository.save(thread);
+    public Reply save(Reply reply){
+        return replyRepository.save(reply);
     }
 
-    public List<Thread> findAll() {
-        return threadRepository.findAll();
+    public List<Reply> findAll() {
+        return replyRepository.findAll();
     }
 }
