@@ -2,8 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>MaxThreads</title>
+    <th:block th:include="fragments/header :: headitems"></th:block>
 </head>
 <body>
+
+    <div th:replace="fragments/header :: header"></div>
+
     <div th:if="${session.login != null}">
         <a th:href="@{/thread/create}">Create Thread</a>
     </div>
