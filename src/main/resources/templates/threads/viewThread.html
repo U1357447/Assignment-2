@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>MaxThreads - Thread</title>
     <th:block th:include="fragments/header :: headitems"></th:block>
@@ -10,6 +10,8 @@
     <div th:if="${session.login != null}">
         <a th:href="#">Reply</a>
     </div>
+
+    <a href="#" th:href="@{/reply/}+${thread.threadID}">Reply</a>
 
     <table border="1">
         <tr>

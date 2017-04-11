@@ -34,5 +34,37 @@ public class ReplyController {
         return "threads/viewThread";
     }
 
+    @RequestMapping(value = "/reply/{thread}", method = RequestMethod.GET)
+    public String reply(Model model, @PathVariable Thread thread){
+        model.addAttribute("reply", new Reply());
+        model.addAttribute("replies", thread.getReplies());
+        model.addAttribute("thread", thread);
+        return "replies/createReply";
+    }
+
+    @RequestMapping(value = "/reply/{thread}", method = RequestMethod.POST)
+    public String createReply(Model model, @PathVariable Thread thread, @Valid @ModelAttribute("reply") Reply reply, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("reply", reply);
+            model.addAttribute("replies", thread.getReplies());
+            model.addAttribute("thread", thread);
+            model.addAttribute("type", "danger");
+            model.addAttribute("message", "Please provide the body for the new note.");
+            return "replies/createReplies";
+        }
+
+        replyService.save(reply);
+        thread.getReplies().add(reply);
+        threadService.save(thread);
+
+        model.addAttribute("reply", new Reply());
+        model.addAttribute("replies", thread.getReplies());
+        model.addAttribute("thread", thread);
+
+        model.addAttribute("type", "success");
+        model.addAttribute("message", "Reply added successfully");
+
+        return "threads/viewThreads";
+    }
 
 }
