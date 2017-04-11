@@ -4,19 +4,19 @@
       th:fragment="page">
 <head>
     <title>MaxThreads</title>
-    <th:block th:include="fragments/header :: headitems"></th:block>
+    <th:block th:replace="fragments/header :: headitems"></th:block>
 </head>
 <body>
-<div class="full-height">
-    <div th:include="fragments/header :: header"/>
+    <div th:replace="fragments/header :: header"/>
 
-    <div class="container content-height">
-        <div th:include="this :: content"/>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div th:replace="this :: content"/>
+            </div>
+        </div>
     </div>
 
-    <div class="content">
-        <div th:include="fragments/footer :: footer"/>
-    </div>
-</div>
+    <div th:replace="fragments/footer :: footer"/>
 </body>
 </html>
