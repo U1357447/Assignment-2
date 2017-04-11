@@ -2,10 +2,9 @@ package com.assignment2.domain;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by u1357447 on 07/04/17.
@@ -73,4 +72,11 @@ public class Thread {
     public void setTimeUpdated(String timeUpdated) {
         this.timeUpdated = timeUpdated;
     }
+
+    public List<Reply> getReplies() {
+        return replies;
+    }
+
+    @OneToMany
+    private List<Reply> replies = new ArrayList<Reply>();
 }
