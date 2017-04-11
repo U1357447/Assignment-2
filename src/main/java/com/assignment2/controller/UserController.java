@@ -24,7 +24,7 @@ public class UserController {
     public String registerView(Model model){
         User user = new User();
         model.addAttribute("user", user);
-        return "register";
+        return "user/register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -32,13 +32,13 @@ public class UserController {
         if(bindingResult.hasErrors()) {
             model.addAttribute("user", user);
             model.addAttribute("message", "Please provide information in each field");
-            return "register";
+            return "user/register";
         }
 
         if(userService.checkUsername(user) == true){
             model.addAttribute("user", user);
             model.addAttribute("message", "Username already exists");
-            return "register";
+            return "user/register";
         }
 
         userService.save(user);
@@ -49,7 +49,7 @@ public class UserController {
     public String loginView(Model model){
         LoginForm user = new LoginForm();
         model.addAttribute("user", user);
-        return "login";
+        return "user/login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -57,13 +57,13 @@ public class UserController {
         if(bindingResult.hasErrors()) {
             model.addAttribute("user", user);
             model.addAttribute("message", "Username and password combination incorrect");
-            return "login";
+            return "user/login";
         }
 
         if(userService.validateLogin(user) == false) {
             model.addAttribute("user", user);
             model.addAttribute("message", "Username and password combination incorrect");
-            return "login";
+            return "user/login";
         }
 
         Long id = userService.getUserID(user);
@@ -89,7 +89,7 @@ public class UserController {
     @RequestMapping(value = "/update/{user}", method = RequestMethod.GET)
     public String updateView(Model model, @PathVariable User user){
         model.addAttribute("user", user);
-        return "update";
+        return "user/update";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
