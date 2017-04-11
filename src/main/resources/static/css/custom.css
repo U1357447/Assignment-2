@@ -1,0 +1,51 @@
+.html
+{
+    position:relative !important;
+    min-height:100% !important;
+}
+
+.body
+{
+    padding-bottom:130px !important;
+    background-color: white !important;
+}
+
+.header
+{
+    background-color:#A62639;
+    height:200px;
+    width:100%;
+    margin-bottom:20px;
+}
+
+.header-text
+{
+    margin-top:4%;
+    color:white;
+}
+
+.footer
+{
+    background-color: #A62639;
+    width:100%;
+    height:130px;
+    bottom:0;
+    position:absolute;
+}
+
+.footer-text
+{
+    text-align: center;
+    margin-top:2%;
+    color:white;
+}
+
+.panel-heading
+{
+    background-color: #ECECEC !important;
+}
+
+.panel-body
+{
+    background-color: #ECECEC !important;
+}

@@ -2,27 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
     <div th:fragment="headitems">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-        <link href="../../static/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/custom.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </div>
 
     <div th:fragment="header">
-        <style>
-            .header
-            {
-                background-color: #A62639;
-                height:200px;
-                width:100%;
-                margin-bottom:20px;
-            }
-            .header-text
-            {
-                margin-top:4px;
-                color:white;
-            }
-        </style>
         <a th:href="@{/}">Home</a>
         <a th:href="@{/user/register}">Register</a>
         <a th:href="@{/user/login}">Login</a>
