@@ -3,22 +3,29 @@
 
     <div th:fragment="content">
         <div th:if="${session.login != null}">
-            <h1>Edit Thread</h1>
-            <form action="#" th:action="@{/thread/edit/} + ${thread.threadID}" th:object="${thread}" method="post">
-                <input type="hidden" th:field="*{threadID}"/>
-                <p>Heading</p>
-                <input type="text" th:field="*{heading}"/>
-                <p>Content</p>
-                <input type="text" th:field="*{content}"/>
+            <div class="col-md-12 text-center">
+                <h1>Edit Thread</h1>
+            </div>
+            <div class="col-md-3"></div>
+            <div class="well col-md-6">
+                <div class="form-group">
+                    <form action="#" th:action="@{/thread/edit/} + ${thread.threadID}" th:object="${thread}" method="post">
+                        <input type="hidden" th:field="*{threadID}"/>
+                        <label class="form-check-label">Heading</label>
+                        <input class="form-control" type="text" th:field="*{heading}"/>
+                        <label class="form-check-label">Content</label>
+                        <textarea rows="5" class="form-control" type="text" th:field="*{content}"/>
 
-                <input type="hidden" th:field="*{ownerID}"/>
-                <input type="hidden" th:field="*{ownerName}"/>
-                <input type="hidden" th:field="*{timeCreated}"/>
-                <input type="hidden" th:id="timeUpdated" th:name="timeUpdated" th:value="${#dates.format(#dates.createNow(), 'dd/MM/YYYY HH:mm:ss')}"/>
-                <br/><br/>
+                        <input type="hidden" th:field="*{ownerID}"/>
+                        <input type="hidden" th:field="*{ownerName}"/>
+                        <input type="hidden" th:field="*{timeCreated}"/>
+                        <input type="hidden" th:id="timeUpdated" th:name="timeUpdated" th:value="${#dates.format(#dates.createNow(), 'dd/MM/YYYY HH:mm:ss')}"/>
+                        <br/>
 
-                <input type="submit" value="Update Thread"/>
-            </form>
+                        <div class="text-center"><input class="btn btn-primary" type="submit" value="Update Thread"/></div>
+                    </form>
+                </div>
+            </div>
         </div>
         <div th:if="${message} != null">
             <p><span th:text="${message}" /></p>
