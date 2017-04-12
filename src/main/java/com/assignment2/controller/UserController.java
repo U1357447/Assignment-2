@@ -74,6 +74,12 @@ public class UserController {
             return "user/login";
         }
 
+        if(userService.loginCheck(user) == true) {
+            model.addAttribute("user", user);
+            model.addAttribute("message", "Your account has been banned by an administrator");
+            return "user/login";
+        }
+
         Long id = userService.getUserID(user);
         String name = userService.getUserName(user);
         session.setAttribute("login", id);

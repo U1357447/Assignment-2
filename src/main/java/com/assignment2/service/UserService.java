@@ -54,6 +54,11 @@ public class UserService {
         return token.length() > 0;
     }
 
+    public boolean loginCheck(LoginForm user){
+        User ret = userRepository.getUser(user.getUsername());
+        return ret.getBan() == true;
+    }
+
     public boolean  isUserBanned(User user){
         User ret = userRepository.getUser(user.getUsername());
         return ret.getBan() == true;
