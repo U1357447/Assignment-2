@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layout/layout :: page">
+
+    <div th:fragment="content">
+        <div th:if="${session.login != null}">
+            <h1>Edit Reply</h1>
+            <form action="#" th:action="@{/reply/edit/} + ${thread.threadID} + '/' + ${reply.replyID}" th:object="${reply}" method="post">
+                <input type="text" th:field="*{content}"/>
+                <input type="hidden" th:field="*{threadID"/>
+                <input type="hidden" th:field="*{ownerID}"/>
+                <input type="hidden" th:field="*{ownerName}"/>
+                <input type="hidden" th:field="*{timeCreated}"/>
+                <br/><br/>
+
+                <input type="submit" value="Update Reply"/>
+            </form>
+        </div>
+        <div th:if="${message} != null">
+            <p><span th:text="${message}" /></p>
+        </div>
+    </div>
+</html>
