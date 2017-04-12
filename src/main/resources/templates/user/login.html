@@ -2,17 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layout/layout :: page">
 
     <div th:fragment="content">
-        <h1>Login</h1>
+        <div class="col-md-12 text-center">
+            <h1>Login</h1>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="well col-md-6">
+            <div class="form-group">
+                <form action="#" th:action="@{/user/login}" th:object="${user}" method="post">
+                    <label class="form-check-label">Username</label>
+                    <input class="form-control" type="text" th:field="*{username}"/><br/>
+                    <label class="form-check-label">Password</label>
+                    <input class="form-control" type="password" th:field="*{password}"/>
+                    <br/><br/>
 
-        <form action="#" th:action="@{/user/login}" th:object="${user}" method="post">
-            <p>Username</p>
-            <input type="text" th:field="*{username}"/>
-            <p>Password</p>
-            <input type="password" th:field="*{password}"/>
-            <br/><br/>
-
-            <input type="submit" value="Login"/>
-        </form>
+                    <div class="text-center"><input class="btn btn-primary" type="submit" value="Login"/></div>
+                </form>
+            </div>
+        </div>
 
         <div th:if="${message} != null">
             <p><span th:text="${message}" /></p>

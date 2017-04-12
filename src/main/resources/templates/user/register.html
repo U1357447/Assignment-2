@@ -6,7 +6,7 @@
             <h1>Registration</h1>
         </div>
         <div class="col-md-3"></div>
-        <div class="well col-md-6 vertical-center-row">
+        <div class="well col-md-6">
             <div class="form-group">
                 <form action="#" th:action="@{/user/register}" th:object="${user}" method="post">
                     <label class="form-check-label">First Name: </label><span style="color:red;"> *</span>
@@ -26,7 +26,7 @@
                     <input class="form-control" type="text" th:field="*{isAdmin}"/><br/>
                     <br/>
                     <input type="hidden" th:id="ban" th:name="ban" th:value="false"/>
-                    <input class="btn btn-primary" type="submit" value="Register"/>
+                    <div class="text-center"><input class="btn btn-primary" type="submit" value="Register"/></div>
                 </form>
             </div>
         </div>
