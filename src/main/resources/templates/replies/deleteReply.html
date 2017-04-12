@@ -4,7 +4,7 @@
     <div th:fragment="content">
         <div th:if="${session.login != null}">
             <h1>Confirm Deletion of Reply</h1>
-            <form action="#" th:action="@{/reply/delete/} + ${thread.threadID} + ${reply.replyID}" th:object="${reply}" method="post">
+            <form action="#" th:action="@{/reply/delete/} + ${thread.threadID} + '/' + ${reply.replyID}" th:object="${reply}" method="post">
                 <p th:text="${reply.content}"></p>
 
                 <input type="submit" value="Delete"/>

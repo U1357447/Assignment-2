@@ -73,7 +73,7 @@ public class ThreadController {
     }
 
     @RequestMapping(value = "/delete/{thread}", method = RequestMethod.POST)
-    public String deleteView(@PathVariable Thread thread){
+    public String delete(@PathVariable Thread thread){
         threadService.delete(thread);
         return "redirect:/";
     }

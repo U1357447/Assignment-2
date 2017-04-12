@@ -88,4 +88,15 @@ public class ReplyController {
         return "threads/viewThread";
     }
 
+    @RequestMapping(value = "/reply/delete/{thread}", method = RequestMethod.GET)
+    public String deleteView(Model model, @PathVariable Reply reply){
+        model.addAttribute("reply", reply);
+        return "replies/deleteReply";
+    }
+
+    @RequestMapping(value = "/reply/delete/{thread}", method = RequestMethod.POST)
+    public String delete(@PathVariable Reply reply){
+        replyService.delete(reply);
+        return "threads/viewThread";
+    }
 }

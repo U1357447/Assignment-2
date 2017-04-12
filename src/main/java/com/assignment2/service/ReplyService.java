@@ -19,6 +19,8 @@ public class ReplyService {
         return replyRepository.save(reply);
     }
 
+    public void delete(Reply reply) {replyRepository.delete(reply); }
+
     public List<Reply> findAll() {
         return replyRepository.findAll();
     }
