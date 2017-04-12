@@ -60,14 +60,14 @@ public class ReplyController {
         return "threads/viewThread";
     }
 
-    @RequestMapping(value = "/reply/edit/{thread}/{reply}", method = RequestMethod.GET)
+    @RequestMapping(value = "/edit/{thread}/{reply}", method = RequestMethod.GET)
     public String editNoteView(Model model, @PathVariable Thread thread, @PathVariable Reply reply){
         model.addAttribute("thread", thread);
         model.addAttribute("reply", reply);
         return "replies/editReply";
     }
 
-    @RequestMapping(value = "/reply/edit/{thread}/{reply}", method = RequestMethod.POST)
+    @RequestMapping(value = "/edit/{thread}/{reply}", method = RequestMethod.POST)
     public String editNote(Model model, @PathVariable Thread thread, @Valid @ModelAttribute("reply") Reply reply, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             model.addAttribute("reply", reply);
@@ -80,6 +80,7 @@ public class ReplyController {
 
         model.addAttribute("thread", thread);
         model.addAttribute("reply", reply);
+        model.addAttribute("replies", thread.getReplies());
 
         model.addAttribute("type", "success");
         model.addAttribute("message", "The note has been updated.");
