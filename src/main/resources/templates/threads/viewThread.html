@@ -13,7 +13,7 @@
         <div class="panel panel-default">
             <div class="panel-heading clearfix">
                 <h2 th:text="${thread.heading}"></h2>
-                <p th:text="${thread.content}"></p>
+                <div class="col-md-9"><pre><div  th:text="${thread.content}"/></pre></div>
 
                 <div class="pull-right">
                     <span th:text="'Created by: '  + ${thread.ownerName}"></span><br/>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="panel-body" th:each="reply : ${replies}">
-                    <div class="col-md-9" th:text="${reply.content}"></div>
+                    <div class="col-md-9"><pre><div  th:text="${reply.content}"/></pre></div>
                     <div class="col-md-3">
                         <div th:if="${reply.ownerID} == ${session.login}">
                             <a th:href="@{/reply/edit/} + ${thread.threadID} + '/' + ${reply.replyID}" class="btn btn-primary">&#160;&#160;Edit&#160;&#160;</a>
