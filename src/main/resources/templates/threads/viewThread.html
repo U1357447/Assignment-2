@@ -3,46 +3,49 @@
 
     <div th:fragment="content">
         <div th:if="${session.login != null}">
-            <a href="#" th:href="@{/reply/}+${thread.threadID}">Reply</a>
+            <div class="well">
+                <h1>Send a Reply</h1>
+                <p>Please use the button below to send a reply.</p>
+                <a class="btn btn-primary" th:href="@{/reply/}+${thread.threadID}">Reply</a>
+            </div>
         </div>
 
-        <table border="1">
-            <tr>
-                <th>ID</th>
-                <th>Heading</th>
-                <th>Content</th>
-                <th>OwnerID</th>
-                <th>timeCreated</th>
-                <th>timeUpdated</th>
-            </tr>
-            <tr>
-                <td th:text="${thread.threadID}"></td>
-                <td th:text="${thread.heading}"></td>
-                <td th:text="${thread.content}"></td>
-                <td th:text="${thread.ownerID}"></td>
-                <td th:text="${thread.timeCreated}"></td>
-                <td th:text="${thread.timeUpdated}"></td>
-            </tr>
-        </table>
-        <hr/>
-        <table border="1">
-            <tr>
-                <th>ID</th>
-                <th>Content</th>
-                <th>ThreadID</th>
-                <th>OwnerID</th>
-                <th>timeCreated</th>
-                <th>timeUpdated</th>
-            </tr>
-            <tr th:each="reply : ${replies}">
-                <td th:text="${reply.replyID}"></td>
-                <td th:text="${reply.content}"></td>
-                <td th:text="${reply.threadID}"></td>
-                <td th:text="${reply.ownerID}"></td>
-                <td th:text="${reply.timeCreated}"></td>
-                <td th:text="${reply.timeUpdated}"></td>
-            </tr>
-        </table>
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h2 th:text="${thread.heading}"></h2>
+                <p th:text="${thread.content}"></p>
+
+                <div class="pull-right">
+                    <span th:text="'Created by: '  + ${thread.ownerName}"></span><br/>
+                    <span th:text="'Created at: '  + ${thread.timeCreated}"></span><br/>
+                    <span th:text="'Last Updated: '  + ${thread.timeUpdated}"></span>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="panel-body"><h3>Replies</h3></div><hr/>
+
+                <div class="panel-body" th:if="${!replies.isEmpty()}">
+                    <div class="alert alert-danger" role="alert">
+                        <p>No replies have been added to this thread yet.</p>
+                    </div>
+                </div>
+
+                <div class="panel-body" th:each="reply : ${replies}">
+                    <div class="col-md-9" th:text="${reply.content}"></div>
+                    <div class="col-md-3">
+                        <div th:if="${reply.ownerID} == ${session.login}">
+                            <a href="#" class="btn btn-primary">&#160;&#160;Edit&#160;&#160;</a>
+                            <a href="#" class="btn btn-danger">Delete</a><br/>
+                        </div>
+                        <span th:text="'Created by: '  + ${reply.ownerName}"></span><br/>
+                        <span th:text="'Created at: '  + ${reply.timeCreated}"></span><br/>
+                        <span th:text="'Last Updated: '  + ${reply.timeUpdated}"></span>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+        </div>
 
         <div th:if="${message} != null">
             <p><span th:text="${message}" /></p>
