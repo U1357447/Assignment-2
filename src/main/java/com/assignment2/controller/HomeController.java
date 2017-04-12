@@ -21,10 +21,7 @@ public class HomeController {
     ThreadService threadService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(Model model, HttpSession session){
-        if(session.getAttribute("login") != null) {
-
-        }
+    public String index(Model model){
         List<Thread> threads = threadService.findAll();
         model.addAttribute("threads", threads);
         return "index";

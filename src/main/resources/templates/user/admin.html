@@ -3,7 +3,7 @@
 
     <div th:fragment="content">
         <div th:if="${session.admin == true}">
-            <div class="col-md-12" th:if="${message} != null">
+            <div th:if="${message} != null">
                 <div class="alert alert-success" role="alert" th:if="${type} == 'success'" th:text="${message}"></div>
                 <div class="alert alert-danger" role="alert" th:if="${type} == 'danger'" th:text="${message}"></div>
             </div>

@@ -1,7 +1,9 @@
 package com.assignment2.controller;
 import com.assignment2.domain.LoginForm;
+import com.assignment2.domain.Thread;
 import com.assignment2.domain.User;
 import com.assignment2.domain.UserSearchForm;
+import com.assignment2.service.ThreadService;
 import com.assignment2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserService userService;
+    @Autowired
+    ThreadService threadService;
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerView(Model model){
@@ -121,7 +125,10 @@ public class UserController {
         userService.save(user);
         model.addAttribute("type", "success");
         model.addAttribute("message", "The thread has been updated successfully");
-        return "redirect:/";
+
+        List<Thread> threads = threadService.findAll();
+        model.addAttribute("threads", threads);
+        return "index";
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
@@ -146,8 +153,11 @@ public class UserController {
     @RequestMapping(value = "/admin/ban/{user}", method = RequestMethod.POST)
     public String ban(Model model, @PathVariable User user){
         UserSearchForm searchForm = new UserSearchForm();
+        List<User> users = userService.findAll();
         model.addAttribute("searchCriteria", searchForm);
+        model.addAttribute("searchedUsers", users);
         model.addAttribute("users", userService.findAll());
+
         if(userService.isUserBanned(user) == true) {
             user.setBan(false);
             userService.save(user);

@@ -56,7 +56,12 @@ public class ThreadController {
             return "threads/createThread";
         }
         threadService.save(thread);
-        return "redirect:/";
+        model.addAttribute("type", "success");
+        model.addAttribute("message", "Thread created successfully");
+
+        List<Thread> threads = threadService.findAll();
+        model.addAttribute("threads", threads);
+        return "index";
     }
 
     @RequestMapping(value = "/edit/{thread}", method = RequestMethod.GET)
@@ -66,9 +71,14 @@ public class ThreadController {
     }
 
     @RequestMapping(value = "/edit/{thread}", method = RequestMethod.POST)
-    public String edit(@ModelAttribute("thread") Thread thread){
+    public String edit(Model model, @ModelAttribute("thread") Thread thread){
         threadService.save(thread);
-        return "redirect:/";
+        model.addAttribute("type", "success");
+        model.addAttribute("message", "Thread updated successfully");
+
+        List<Thread> threads = threadService.findAll();
+        model.addAttribute("threads", threads);
+        return "index";
     }
 
     @RequestMapping(value = "/delete/{thread}", method = RequestMethod.GET)
@@ -89,6 +99,9 @@ public class ThreadController {
         threadService.delete(thread);
         model.addAttribute("type", "success");
         model.addAttribute("message", "The thread and its replies have been deleted successfully");
-        return "redirect:/";
+
+        List<Thread> threads = threadService.findAll();
+        model.addAttribute("threads", threads);
+        return "index";
     }
 }
