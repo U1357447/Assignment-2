@@ -28,27 +28,23 @@
                     <br/>
                     <table class="table">
                         <tr>
-                            <th width="25%">First Name</th>
-                            <th width="25%">Last Name</th>
-                            <th width="25%">Username</th>
-                            <th width="25%">Ban/Unban</th>
+                            <th width="20%">First Name</th>
+                            <th width="20%">Last Name</th>
+                            <th width="20%">Username</th>
+                            <th width="20%">Edit</th>
+                            <th width="20%">Ban/Unban</th>
                         </tr>
                         <tr th:each="user : ${searchedUsers}">
                             <td th:text="${user.firstname}"></td>
                             <td th:text="${user.lastname}"></td>
                             <td th:text="${user.username}"></td>
                             <td>
+                                <a class="btn btn-primary" th:href="@{/user/update/} + ${user.id}" type="submit">Edit</a>
+                            </td>
+                            <td>
                                 <form th:action="@{/user/admin/ban/} + ${user.id}" th:object="${user}" th:method="post">
-                                    <input class="btn btn-primary"
-                                           type="submit"
-                                           th:if="${user.ban == false}"
-                                           th:href="@{/user/admin/ban/} + ${user.id}"
-                                           th:value="'Ban ' + ${user.firstname} + ' ' + ${user.lastname}"/>
-                                    <input class="btn btn-primary"
-                                           type="submit"
-                                           th:if="${user.ban == true}"
-                                           th:href="@{/user/admin/ban/} + ${user.id}"
-                                           th:value="'Unban ' + ${user.firstname} + ' ' + ${user.lastname}"/>
+                                    <input class="btn btn-primary" type="submit" th:if="${user.ban == false}" th:value="'Ban'"/>
+                                    <input class="btn btn-primary" type="submit" th:if="${user.ban == true}" th:value="'Unban'"/>
                                 </form>
                             </td>
                         </tr>
