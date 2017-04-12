@@ -95,8 +95,8 @@ public class ReplyController {
         return "replies/deleteReply";
     }
 
-    @RequestMapping(value = "/delete/{thread}/{reply}", method = RequestMethod.GET)
-    public String deleteCard(Model model, @PathVariable Thread thread, @PathVariable Reply reply){
+    @RequestMapping(value = "/delete/{thread}/{reply}", method = RequestMethod.POST)
+    public String delete(Model model, @PathVariable Thread thread, @PathVariable Reply reply){
         thread.getReplies().remove(reply);
         threadService.save(thread);
         replyService.delete(reply);
