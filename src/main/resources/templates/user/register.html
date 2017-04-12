@@ -2,29 +2,33 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layout/layout :: page">
 
     <div th:fragment="content">
-        <h1>Registration</h1>
+        <div class="col-md-12 text-center">
+            <h1>Registration</h1>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="well col-md-6 vertical-center-row">
+            <div class="form-group">
+                <form action="#" th:action="@{/user/register}" th:object="${user}" method="post">
+                    <label class="form-check-label">First Name: </label><span style="color:red;"> *</span>
+                    <input class="form-control" type="text" th:field="*{firstname}"/><br/>
 
-        <div class="form-group">
-            <form action="#" th:action="@{/user/register}" th:object="${user}" method="post">
-                <label class="form-check-label">First Name: </label><span style="color:red;"> *</span>
-                <input class="form-control" type="text" th:field="*{firstname}"/><br/>
+                    <label class="form-check-label">Last Name: </label><span style="color:red;"> *</span>
+                    <input class="form-control" type="text" th:field="*{lastname}"/><br/>
 
-                <label class="form-check-label">Last Name: </label><span style="color:red;"> *</span>
-                <input class="form-control" type="text" th:field="*{lastname}"/><br/>
+                    <label class="form-check-label">Username: </label><span style="color:red;"> *</span>
+                    <input class="form-control" type="text" th:field="*{username}"/><br/>
 
-                <label class="form-check-label">Username: </label><span style="color:red;"> *</span>
-                <input class="form-control" type="text" th:field="*{username}"/><br/>
+                    <label class="form-check-label">Password: </label><span style="color:red;"> *</span>
+                    <input class="form-control" type="password" th:field="*{password}"/><br/>
 
-                <label class="form-check-label">Password: </label><span style="color:red;"> *</span>
-                <input class="form-control" type="password" th:field="*{password}"/><br/>
-
-                <br/>
-                <label class="form-check-label">Token: </label><span style="color:red;"> optional</span>
-                <input class="form-control" type="text" th:field="*{isAdmin}"/><br/>
-                <br/><br/>
-                <input type="hidden" th:id="ban" th:name="ban" th:value="false"/>
-                <input class="btn btn-primary" type="submit" value="Register"/>
-            </form>
+                    <br/>
+                    <label class="form-check-label">Token: </label><span style="color:red;"> optional</span>
+                    <input class="form-control" type="text" th:field="*{isAdmin}"/><br/>
+                    <br/>
+                    <input type="hidden" th:id="ban" th:name="ban" th:value="false"/>
+                    <input class="btn btn-primary" type="submit" value="Register"/>
+                </form>
+            </div>
         </div>
 
         <div th:if="${message} != null">
