@@ -27,6 +27,9 @@
                         <a th:href="@{/thread/edit/} + ${thread.threadID}" class="btn btn-primary">&#160;&#160;Edit&#160;&#160;</a>
                         <a th:href="@{/thread/delete/} + ${thread.threadID}" class="btn btn-danger">Delete</a><br/>
                     </div>
+                    <div th:if="${session.admin} == true">
+                        <br/><a th:href="@{/thread/delete/} + ${thread.threadID}" class="btn btn-danger">Delete as Administrator</a><br/>
+                    </div>
                     <span th:text="'Created by: '  + ${thread.ownerName}"></span><br/>
                     <span th:text="'Created at: '  + ${thread.timeCreated}"></span><br/>
                     <span th:text="'Last Updated: '  + ${thread.timeUpdated}"></span>
