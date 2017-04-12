@@ -88,15 +88,26 @@ public class ReplyController {
         return "threads/viewThread";
     }
 
-    @RequestMapping(value = "/reply/delete/{thread}", method = RequestMethod.GET)
-    public String deleteView(Model model, @PathVariable Reply reply){
+    @RequestMapping(value = "/delete/{thread}/{reply}", method = RequestMethod.GET)
+    public String deleteView(Model model, @PathVariable Reply reply, @PathVariable Thread thread){
+        model.addAttribute("thread", thread);
         model.addAttribute("reply", reply);
         return "replies/deleteReply";
     }
 
-    @RequestMapping(value = "/reply/delete/{thread}", method = RequestMethod.POST)
-    public String delete(@PathVariable Reply reply){
+    @RequestMapping(value = "/delete/{thread}/{reply}", method = RequestMethod.GET)
+    public String deleteCard(Model model, @PathVariable Thread thread, @PathVariable Reply reply){
+        thread.getReplies().remove(reply);
+        threadService.save(thread);
         replyService.delete(reply);
+
+        model.addAttribute("reply", new Reply());
+        model.addAttribute("replies", thread.getReplies());
+        model.addAttribute("thread", thread);
+
+        model.addAttribute("type", "success");
+        model.addAttribute("message", "The reply has been deleted.");
+
         return "threads/viewThread";
     }
 }
