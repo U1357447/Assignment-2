@@ -2,6 +2,7 @@ package com.assignment2.controller;
 
 import com.assignment2.domain.Reply;
 import com.assignment2.domain.Thread;
+import com.assignment2.service.ReplyService;
 import com.assignment2.service.ThreadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by u1357447 on 07/04/17.
@@ -23,6 +25,8 @@ import javax.validation.Valid;
 public class ThreadController {
     @Autowired
     ThreadService threadService;
+    @Autowired
+    ReplyService replyService;
 
     @RequestMapping(value = "/{thread}", method = RequestMethod.GET)
     public String viewThread(Model model, @PathVariable Thread thread){
@@ -74,6 +78,13 @@ public class ThreadController {
 
     @RequestMapping(value = "/delete/{thread}", method = RequestMethod.POST)
     public String delete(@PathVariable Thread thread){
+        int replies = thread.getReplies().size();
+        for (int i=replies-1; i>=0; i--) {
+            Reply reply = thread.getReplies().get(i);
+            thread.getReplies().remove(reply);
+            threadService.save(thread);
+            replyService.delete(reply);
+        }
         threadService.delete(thread);
         return "redirect:/";
     }

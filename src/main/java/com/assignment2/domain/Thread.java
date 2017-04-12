@@ -83,6 +83,8 @@ public class Thread {
         return replies;
     }
 
+    public void clearReplies() { this.replies.clear(); }
+
     @OneToMany
     private List<Reply> replies = new ArrayList<Reply>();
 }
