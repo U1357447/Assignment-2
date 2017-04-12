@@ -35,7 +35,7 @@ public class UserService {
     }
 
     public List<User> searchUsers(UserSearchForm user){
-        return userRepository.searchUsers(user.getUsername());
+        return userRepository.searchUsers(user.getLastname());
     }
 
     public Long getUserID(LoginForm user){

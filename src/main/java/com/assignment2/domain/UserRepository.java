@@ -20,6 +20,6 @@ public interface UserRepository extends JpaRepository<User, Long>{
     @Query("SELECT u FROM User u WHERE u.username = ?1")
     User getUser(String username);
 
-    @Query("SELECT u FROM User u WHERE u.username LIKE ?1")
-    List<User> searchUsers(String username);
+    @Query("SELECT u FROM User u WHERE LOWER(u.lastname) LIKE %?1%")
+    List<User> searchUsers(String lastname);
 }

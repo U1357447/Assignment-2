@@ -3,10 +3,38 @@
 
     <div th:fragment="content">
         <div th:if="${session.admin == true}">
-            <div class="well">
-                <h1>Administrator Tools</h1>
-
-
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <h1>Administrator Tools</h1>
+                </div>
+                <div class="panel-body">
+                    <h3>Search Users</h3><br/>
+                    <div class="form-group">
+                        <form th:action="@{/user/admin}" th:object="${searchCriteria}" th:method="post">
+                            <label>Last Name: </label>
+                            <input class="form-control" type="text" th:field="*{lastname}"/>
+                            <br/>
+                            <input class="btn btn-primary" type="submit" value="Search"/>
+                        </form>
+                    </div>
+                    <br/>
+                    <table class="table">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                            <th>Ban/Unban</th>
+                        </tr>
+                        <tr th:each="user : ${searchedUsers}">
+                            <td th:text="${user.firstname}"></td>
+                            <td th:text="${user.lastname}"></td>
+                            <td th:text="${user.username}"></td>
+                            <td>
+                                <a class="btn btn-primary" th:href="@{/admin/ban/} + ${user.id}" th:text="'Ban ' + ${user.firstname} + ' ' + ${user.lastname}">Ban</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

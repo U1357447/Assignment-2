@@ -1,6 +1,7 @@
 package com.assignment2.controller;
 import com.assignment2.domain.LoginForm;
 import com.assignment2.domain.User;
+import com.assignment2.domain.UserSearchForm;
 import com.assignment2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by u1357447 on 07/04/17.
@@ -110,7 +112,28 @@ public class UserController {
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(Model model){
+        UserSearchForm searchForm = new UserSearchForm();
+        model.addAttribute("searchCriteria", searchForm);
         model.addAttribute("users", userService.findAll());
         return "user/admin";
+    }
+
+    @RequestMapping(value = "/admin", method = RequestMethod.POST)
+    public String search(Model model, @ModelAttribute("searchCriteria") UserSearchForm searchForm){
+        List<User> users = userService.searchUsers(searchForm);
+        model.addAttribute("searchCriteria", searchForm);
+        model.addAttribute("searchedUsers", users);
+        model.addAttribute("users", userService.findAll());
+        return "user/admin";
+    }
+
+    @RequestMapping(value = "/admin/ban/{user}", method = RequestMethod.POST)
+    public String ban(Model model){
+        
+
+        UserSearchForm searchForm = new UserSearchForm();
+        model.addAttribute("searchCriteria", searchForm);
+        model.addAttribute("users", userService.findAll());
+        return "/user/admin";
     }
 }
