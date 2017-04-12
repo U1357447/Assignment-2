@@ -42,7 +42,7 @@ public class ReplyController {
             model.addAttribute("replies", thread.getReplies());
             model.addAttribute("thread", thread);
             model.addAttribute("type", "danger");
-            model.addAttribute("message", "Please provide the body for the new note.");
+            model.addAttribute("message", "Please enter a reply");
             return "replies/createReply";
         }
 
@@ -61,18 +61,18 @@ public class ReplyController {
     }
 
     @RequestMapping(value = "/edit/{thread}/{reply}", method = RequestMethod.GET)
-    public String editNoteView(Model model, @PathVariable Thread thread, @PathVariable Reply reply){
+    public String editReplyView(Model model, @PathVariable Thread thread, @PathVariable Reply reply){
         model.addAttribute("thread", thread);
         model.addAttribute("reply", reply);
         return "replies/editReply";
     }
 
     @RequestMapping(value = "/edit/{thread}/{reply}", method = RequestMethod.POST)
-    public String editNote(Model model, @PathVariable Thread thread, @Valid @ModelAttribute("reply") Reply reply, BindingResult bindingResult){
+    public String editReply(Model model, @PathVariable Thread thread, @Valid @ModelAttribute("reply") Reply reply, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             model.addAttribute("reply", reply);
             model.addAttribute("type", "danger");
-            model.addAttribute("message", "The body of the note cannot be empty.");
+            model.addAttribute("message", "Please enter a reply.");
             return "replies/editReply";
         }
 
@@ -83,7 +83,7 @@ public class ReplyController {
         model.addAttribute("replies", thread.getReplies());
 
         model.addAttribute("type", "success");
-        model.addAttribute("message", "The note has been updated.");
+        model.addAttribute("message", "Reply has been updated successfully");
 
         return "threads/viewThread";
     }
@@ -106,7 +106,7 @@ public class ReplyController {
         model.addAttribute("thread", thread);
 
         model.addAttribute("type", "success");
-        model.addAttribute("message", "The reply has been deleted.");
+        model.addAttribute("message", "The reply has been deleted successfully");
 
         return "threads/viewThread";
     }

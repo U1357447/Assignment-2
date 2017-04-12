@@ -33,18 +33,21 @@ public class UserController {
     public String register(Model model, @Valid @ModelAttribute("user") User user, BindingResult bindingResult, HttpSession session){
         if(bindingResult.hasErrors()) {
             model.addAttribute("user", user);
+            model.addAttribute("type", "danger");
             model.addAttribute("message", "Please provide information in each field");
             return "user/register";
         }
 
         if(userService.checkUsername(user) == true){
             model.addAttribute("user", user);
+            model.addAttribute("type", "danger");
             model.addAttribute("message", "Username already exists");
             return "user/register";
         }
 
         if((!(user.getIsAdmin().equals(""))) && (!(user.getIsAdmin().equals("ADMIN")))){
             model.addAttribute("user", user);
+            model.addAttribute("type", "danger");
             model.addAttribute("message", "Entered token is invalid");
             return "user/register";
         }
@@ -64,18 +67,21 @@ public class UserController {
     public String login(Model model, @Valid @ModelAttribute("user") LoginForm user, BindingResult bindingResult, HttpSession session){
         if(bindingResult.hasErrors()) {
             model.addAttribute("user", user);
+            model.addAttribute("type", "danger");
             model.addAttribute("message", "Username and password combination incorrect");
             return "user/login";
         }
 
         if(userService.validateLogin(user) == false) {
             model.addAttribute("user", user);
+            model.addAttribute("type", "danger");
             model.addAttribute("message", "Username and password combination incorrect");
             return "user/login";
         }
 
         if(userService.loginCheck(user) == true) {
             model.addAttribute("user", user);
+            model.addAttribute("type", "danger");
             model.addAttribute("message", "Your account has been banned by an administrator");
             return "user/login";
         }
@@ -111,8 +117,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(@ModelAttribute("user") User user){
+    public String update(Model model, @ModelAttribute("user") User user){
         userService.save(user);
+        model.addAttribute("type", "success");
+        model.addAttribute("message", "The thread has been updated successfully");
         return "redirect:/";
     }
 
@@ -143,11 +151,15 @@ public class UserController {
         if(userService.isUserBanned(user) == true) {
             user.setBan(false);
             userService.save(user);
+            model.addAttribute("type", "success");
+            model.addAttribute("message", "User has been unbanned");
             return "user/admin";
         }
         if(userService.isUserBanned(user) == false){
             user.setBan(true);
             userService.save(user);
+            model.addAttribute("type", "success");
+            model.addAttribute("message", "User has been banned");
             return "user/admin";
         }
         return "user/admin";

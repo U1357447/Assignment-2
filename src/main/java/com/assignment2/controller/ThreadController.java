@@ -51,7 +51,8 @@ public class ThreadController {
     public String create(Model model, @Valid @ModelAttribute("thread") Thread thread, BindingResult bindingResult){
         if(bindingResult.hasErrors()) {
             model.addAttribute("thread", thread);
-            model.addAttribute("message", "Please provide information in each field");
+            model.addAttribute("type", "danger");
+            model.addAttribute("message", "Please enter information in both fields");
             return "threads/createThread";
         }
         threadService.save(thread);
@@ -77,7 +78,7 @@ public class ThreadController {
     }
 
     @RequestMapping(value = "/delete/{thread}", method = RequestMethod.POST)
-    public String delete(@PathVariable Thread thread){
+    public String delete(Model model, @PathVariable Thread thread){
         int replies = thread.getReplies().size();
         for (int i=replies-1; i>=0; i--) {
             Reply reply = thread.getReplies().get(i);
@@ -86,6 +87,8 @@ public class ThreadController {
             replyService.delete(reply);
         }
         threadService.delete(thread);
+        model.addAttribute("type", "success");
+        model.addAttribute("message", "The thread and its replies have been deleted successfully");
         return "redirect:/";
     }
 }
