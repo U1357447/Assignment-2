@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      th:fragment="page">
-<head>
-    <title>MaxThreads</title>
-    <th:block th:replace="fragments/header :: headitems"></th:block>
-</head>
-<body>
-    <div th:replace="fragments/header :: header"/>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" th:fragment="page" class="html">
+    <head>
+        <title>MaxThreads</title>
+        <th:block th:replace="fragments/header :: headitems"></th:block>
+    </head>
+    <body class="body">
+        <div class="web" id="app">
+            <div th:replace="fragments/header :: header"/>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div th:replace="this :: content"/>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div th:replace="this :: content"/>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div th:replace="fragments/footer :: footer"/>
-</body>
+            <div th:replace="fragments/footer :: footer"/>
+        </div>
+    </body>
 </html>
