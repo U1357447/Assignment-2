@@ -57,10 +57,10 @@ public class ThreadController {
     @RequestMapping(value = "/edit/{thread}", method = RequestMethod.GET)
     public String editView(Model model, @PathVariable Thread thread){
         model.addAttribute("thread", thread);
-        return "threads/createThread";
+        return "threads/editThread";
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/edit/{thread}", method = RequestMethod.POST)
     public String edit(@ModelAttribute("thread") Thread thread){
         threadService.save(thread);
         return "redirect:/";

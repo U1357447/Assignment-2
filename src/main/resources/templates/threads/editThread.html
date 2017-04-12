@@ -4,15 +4,16 @@
     <div th:fragment="content">
         <div th:if="${session.login != null}">
             <h1>Edit Thread</h1>
-            <form action="#" th:action="@{/thread/}+${thread.threadID}" th:object="${thread}" method="post">
+            <form action="#" th:action="@{/thread/edit/} + ${thread.threadID}" th:object="${thread}" method="post">
+                <input type="hidden" th:field="*{threadID}"/>
                 <p>Heading</p>
                 <input type="text" th:field="*{heading}"/>
                 <p>Content</p>
                 <input type="text" th:field="*{content}"/>
 
-                <input type="hidden" th:id="ownerID" th:name="ownerID" th:value="${thread.ownerID}"/>
-                <input type="hidden" th:id="ownerName" th:name="ownerName" th:value="${thread.ownerName}"/>
-                <input type="hidden" th:id="timeCreated" th:name="timeCreated" th:value="${thread.timeCreated}"/>
+                <input type="hidden" th:field="*{ownerID}"/>
+                <input type="hidden" th:field="*{ownerName}"/>
+                <input type="hidden" th:field="*{timeCreated}"/>
                 <input type="hidden" th:id="timeUpdated" th:name="timeUpdated" th:value="${#dates.format(#dates.createNow(), 'dd/MM/YYYY HH:mm:ss')}"/>
                 <br/><br/>
 

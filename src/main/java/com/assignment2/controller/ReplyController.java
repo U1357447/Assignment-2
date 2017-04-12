@@ -20,7 +20,7 @@ import javax.validation.Valid;
  * Created by u1357447 on 07/04/17.
  */
 @Controller
-@RequestMapping(value = "/thread/reply")
+@RequestMapping(value = "/reply")
 public class ReplyController {
     @Autowired
     ThreadService threadService;
