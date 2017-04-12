@@ -30,7 +30,14 @@
                             <td th:text="${user.lastname}"></td>
                             <td th:text="${user.username}"></td>
                             <td>
-                                <a class="btn btn-primary" th:href="@{/admin/ban/} + ${user.id}" th:text="'Ban ' + ${user.firstname} + ' ' + ${user.lastname}">Ban</a>
+                                <a class="btn btn-primary"
+                                   th:if="${user.ban == ""}"
+                                   th:href="@{/admin/ban/} + ${user.id}"
+                                   th:text="'Ban ' + ${user.firstname} + ' ' + ${user.lastname}"/>
+                                <a class="btn btn-primary"
+                                   th:if="${user.ban == "true"}"
+                                   th:href="@{/admin/ban/} + ${user.id}"
+                                   th:text="'Unban ' + ${user.firstname} + ' ' + ${user.lastname}"/>
                             </td>
                         </tr>
                     </table>

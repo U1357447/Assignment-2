@@ -53,4 +53,10 @@ public class UserService {
         String token = ret.getIsAdmin();
         return token.length() > 0;
     }
+
+    public boolean  isUserBanned(User user){
+        User ret = userRepository.getUser(user.getUsername());
+        String ban = ret.getBan();
+        return ban.length() > 0;
+    }
 }

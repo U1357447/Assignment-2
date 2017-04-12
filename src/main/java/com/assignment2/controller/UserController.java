@@ -128,8 +128,13 @@ public class UserController {
     }
 
     @RequestMapping(value = "/admin/ban/{user}", method = RequestMethod.POST)
-    public String ban(Model model){
-        
+    public String ban(Model model, @PathVariable User user){
+        Boolean isBanned = userService.isUserBanned(user);
+        if(isBanned == true){
+            user.setBan("");
+        } else {
+            user.setBan("true");
+        }
 
         UserSearchForm searchForm = new UserSearchForm();
         model.addAttribute("searchCriteria", searchForm);

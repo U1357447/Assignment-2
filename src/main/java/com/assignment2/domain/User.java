@@ -24,6 +24,8 @@ public class User {
 
     String isAdmin;
 
+    String ban;
+
     public Long getId() {
         return id;
     }
@@ -67,4 +69,8 @@ public class User {
     public String getIsAdmin() { return isAdmin; }
 
     public void setIsAdmin(String isAdmin) { this.isAdmin = isAdmin; }
+
+    public String getBan() { return ban; }
+
+    public void setBan(String ban) { this.ban = ban; }
 }
