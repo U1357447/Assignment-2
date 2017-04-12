@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -40,6 +41,18 @@ public class ThreadController {
             model.addAttribute("message", "Please provide information in each field");
             return "threads/createThread";
         }
+        threadService.save(thread);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/edit/{thread}", method = RequestMethod.GET)
+    public String editView(Model model, @PathVariable Thread thread){
+        model.addAttribute("thread", thread);
+        return "threads/createThread";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String edit(@ModelAttribute("thread") Thread thread){
         threadService.save(thread);
         return "redirect:/";
     }

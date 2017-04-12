@@ -24,7 +24,7 @@
                 <div class="col-md-9" th:text="${thread.content}"></div>
                 <div class="col-md-3">
                     <div th:if="${thread.ownerID} == ${session.login}">
-                        <a href="#" class="btn btn-primary">&#160;&#160;Edit&#160;&#160;</a>
+                        <a th:href="@{/edit/} + ${thread.threadID}" class="btn btn-primary">&#160;&#160;Edit&#160;&#160;</a>
                         <a href="#" class="btn btn-danger">Delete</a><br/>
                     </div>
                     <span th:text="'Created by: '  + ${thread.ownerName}"></span><br/>
