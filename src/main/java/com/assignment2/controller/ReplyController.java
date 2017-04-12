@@ -60,4 +60,31 @@ public class ReplyController {
         return "threads/viewThread";
     }
 
+    @RequestMapping(value = "/reply/edit/{thread}/{reply}", method = RequestMethod.GET)
+    public String editNoteView(Model model, @PathVariable Thread thread, @PathVariable Reply reply){
+        model.addAttribute("thread", thread);
+        model.addAttribute("reply", reply);
+        return "replies/editReply";
+    }
+
+    @RequestMapping(value = "/reply/edit/{thread}/{reply}", method = RequestMethod.POST)
+    public String editNote(Model model, @PathVariable Thread thread, @Valid @ModelAttribute("reply") Reply reply, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("reply", reply);
+            model.addAttribute("type", "danger");
+            model.addAttribute("message", "The body of the note cannot be empty.");
+            return "replies/editReply";
+        }
+
+        replyService.save(reply);
+
+        model.addAttribute("thread", thread);
+        model.addAttribute("reply", reply);
+
+        model.addAttribute("type", "success");
+        model.addAttribute("message", "The note has been updated.");
+
+        return "threads/viewThread";
+    }
+
 }

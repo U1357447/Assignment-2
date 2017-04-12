@@ -5,6 +5,7 @@
         <div th:if="${session.login != null}">
             <h1>Edit Reply</h1>
             <form action="#" th:action="@{/reply/edit/} + ${thread.threadID} + '/' + ${reply.replyID}" th:object="${reply}" method="post">
+                <input typ="hidden" th:field="*{replyID}"/>+
                 <input type="text" th:field="*{content}"/>
                 <input type="hidden" th:field="*{threadID"/>
                 <input type="hidden" th:field="*{ownerID}"/>
