@@ -19,6 +19,8 @@ public class ThreadService {
         return threadRepository.save(thread);
     }
 
+    public void delete(Thread thread) {threadRepository.delete(thread); }
+
     public List<Thread> findAll() {
         return threadRepository.findAll();
     }

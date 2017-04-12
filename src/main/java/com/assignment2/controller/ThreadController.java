@@ -65,4 +65,16 @@ public class ThreadController {
         threadService.save(thread);
         return "redirect:/";
     }
+
+    @RequestMapping(value = "/delete/{thread}", method = RequestMethod.GET)
+    public String deleteView(Model model, @PathVariable Thread thread){
+        model.addAttribute("thread", thread);
+        return "threads/deleteThread";
+    }
+
+    @RequestMapping(value = "/delete/{thread}", method = RequestMethod.POST)
+    public String deleteView(@PathVariable Thread thread){
+        threadService.delete(thread);
+        return "redirect:/";
+    }
 }

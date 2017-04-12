@@ -4,11 +4,11 @@
     <div th:fragment="content">
         <div th:if="${session.login != null}">
             <h1>Confirm Deletion</h1>
-            <form action="#" th:action="@{/thread/delete} + ${thread.threadID}" th:object="${thread}" method="post">
+            <form action="#" th:action="@{/thread/delete/} + ${thread.threadID}" th:object="${thread}" method="post">
                 <h2 th:text="${thread.heading}"></h2>
                 <p th:text="${thread.content}"></p>
 
-                <input type="submit" value="Update Reply"/>
+                <input type="submit" value="Delete Thread"/>
             </form>
         </div>
 
