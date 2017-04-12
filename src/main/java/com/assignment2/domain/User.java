@@ -24,7 +24,7 @@ public class User {
 
     String isAdmin;
 
-    String ban;
+    Boolean ban;
 
     public Long getId() {
         return id;
@@ -58,9 +58,7 @@ public class User {
         this.lastname = lastname;
     }
 
-    public String getPassword() {
-        return password;
-    }
+    public String getPassword() { return password; }
 
     public void setPassword(String password) {
         this.password = password;
@@ -70,7 +68,7 @@ public class User {
 
     public void setIsAdmin(String isAdmin) { this.isAdmin = isAdmin; }
 
-    public String getBan() { return ban; }
+    public Boolean getBan() { return ban; }
 
-    public void setBan(String ban) { this.ban = ban; }
+    public void setBan(Boolean ban) { this.ban = ban; }
 }

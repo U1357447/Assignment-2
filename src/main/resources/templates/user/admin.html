@@ -30,14 +30,18 @@
                             <td th:text="${user.lastname}"></td>
                             <td th:text="${user.username}"></td>
                             <td>
-                                <a class="btn btn-primary"
-                                   th:if="${user.ban == ""}"
-                                   th:href="@{/admin/ban/} + ${user.id}"
-                                   th:text="'Ban ' + ${user.firstname} + ' ' + ${user.lastname}"/>
-                                <a class="btn btn-primary"
-                                   th:if="${user.ban == "true"}"
-                                   th:href="@{/admin/ban/} + ${user.id}"
-                                   th:text="'Unban ' + ${user.firstname} + ' ' + ${user.lastname}"/>
+                                <form th:action="@{/user/admin/ban/} + ${user.id}" th:object="${user}" th:method="post">
+                                    <input class="btn btn-primary"
+                                           type="submit"
+                                           th:if="${user.ban == false}"
+                                           th:href="@{/user/admin/ban/} + ${user.id}"
+                                           th:value="'Ban ' + ${user.firstname} + ' ' + ${user.lastname}"/>
+                                    <input class="btn btn-primary"
+                                           type="submit"
+                                           th:if="${user.ban == true}"
+                                           th:href="@{/user/admin/ban/} + ${user.id}"
+                                           th:value="'Unban ' + ${user.firstname} + ' ' + ${user.lastname}"/>
+                                </form>
                             </td>
                         </tr>
                     </table>

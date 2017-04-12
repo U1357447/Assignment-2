@@ -129,16 +129,19 @@ public class UserController {
 
     @RequestMapping(value = "/admin/ban/{user}", method = RequestMethod.POST)
     public String ban(Model model, @PathVariable User user){
-        Boolean isBanned = userService.isUserBanned(user);
-        if(isBanned == true){
-            user.setBan("");
-        } else {
-            user.setBan("true");
-        }
-
         UserSearchForm searchForm = new UserSearchForm();
         model.addAttribute("searchCriteria", searchForm);
         model.addAttribute("users", userService.findAll());
-        return "/user/admin";
+        if(userService.isUserBanned(user) == true) {
+            user.setBan(false);
+            userService.save(user);
+            return "user/admin";
+        }
+        if(userService.isUserBanned(user) == false){
+            user.setBan(true);
+            userService.save(user);
+            return "user/admin";
+        }
+        return "user/admin";
     }
 }

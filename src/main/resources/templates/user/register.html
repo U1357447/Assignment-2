@@ -22,7 +22,7 @@
                 <label class="form-check-label">Token: </label><span style="color:red;"> optional</span>
                 <input class="form-control" type="text" th:field="*{isAdmin}"/><br/>
                 <br/><br/>
-
+                <input type="hidden" th:id="ban" th:name="ban" th:value="false"/>
                 <input class="btn btn-primary" type="submit" value="Register"/>
             </form>
         </div>

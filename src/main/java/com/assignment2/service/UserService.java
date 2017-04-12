@@ -56,7 +56,6 @@ public class UserService {
 
     public boolean  isUserBanned(User user){
         User ret = userRepository.getUser(user.getUsername());
-        String ban = ret.getBan();
-        return ban.length() > 0;
+        return ret.getBan() == true;
     }
 }
