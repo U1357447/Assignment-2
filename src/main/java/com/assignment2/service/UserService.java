@@ -47,4 +47,10 @@ public class UserService {
         User ret = userRepository.getUser(user.getUsername());
         return ret.getFirstname() + " " + ret.getLastname();
     }
+
+    public boolean  isUserAdmin(LoginForm user){
+        User ret = userRepository.getUser(user.getUsername());
+        String token = ret.getIsAdmin();
+        return token.length() > 0;
+    }
 }

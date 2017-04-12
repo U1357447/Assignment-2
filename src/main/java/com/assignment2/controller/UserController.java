@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(Model model, @Valid @ModelAttribute("user") User user, BindingResult bindingResult){
+    public String register(Model model, @Valid @ModelAttribute("user") User user, BindingResult bindingResult, HttpSession session){
         if(bindingResult.hasErrors()) {
             model.addAttribute("user", user);
             model.addAttribute("message", "Please provide information in each field");
@@ -41,8 +41,14 @@ public class UserController {
             return "user/register";
         }
 
+        if((!(user.getIsAdmin().equals(""))) && (!(user.getIsAdmin().equals("ADMIN")))){
+            model.addAttribute("user", user);
+            model.addAttribute("message", "Entered token is invalid");
+            return "user/register";
+        }
+
         userService.save(user);
-        return "redirect:/";
+        return "user/login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -70,7 +76,7 @@ public class UserController {
         String name = userService.getUserName(user);
         session.setAttribute("login", id);
         session.setAttribute("loginName", name);
-
+        session.setAttribute("admin", userService.isUserAdmin(user));
         Thread thread = new Thread();
         model.addAttribute("thread", thread);
         return "redirect:/";
@@ -80,6 +86,7 @@ public class UserController {
     public String logoutView(Model model, HttpSession session){
         session.removeAttribute("login");
         session.removeAttribute("loginName");
+        session.removeAttribute("admin");
         return "redirect:/user/login";
     }
 
