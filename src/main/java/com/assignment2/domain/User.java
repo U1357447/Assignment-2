@@ -22,6 +22,8 @@ public class User {
     @NotEmpty
     String password;
 
+    String isAdmin;
+
     public Long getId() {
         return id;
     }
@@ -37,7 +39,6 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
-
 
     public String getFirstname() {
         return firstname;
@@ -62,4 +63,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getIsAdmin() { return isAdmin; }
+
+    public void setIsAdmin(String isAdmin) { this.isAdmin = isAdmin; }
 }
