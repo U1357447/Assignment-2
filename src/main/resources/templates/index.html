@@ -21,7 +21,7 @@
             </div>
             <div class="panel-body" th:each="thread : ${threads}">
                 <a th:href="@{/thread/} + ${thread.threadID}"><h2 th:text="${thread.heading}"></h2></a>
-                <div class="col-md-9"><pre><div  th:text="${thread.content}"/></pre></div>
+                <div class="col-md-9"><pre><div th:text="${thread.content}"/></pre></div>
                 <div class="col-md-3">
                     <div th:if="${thread.ownerID} == ${session.login}">
                         <a th:href="@{/thread/edit/} + ${thread.threadID}" class="btn btn-primary">&#160;&#160;Edit&#160;&#160;</a>
