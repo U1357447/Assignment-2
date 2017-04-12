@@ -2,6 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layout/layout :: page">
 
     <div th:fragment="content">
+        <div class="col-md-12" th:if="${message} != null">
+            <div class="alert alert-success" role="alert" th:if="${type} == 'success'" th:text="${message}"></div>
+            <div class="alert alert-danger" role="alert" th:if="${type} == 'danger'" th:text="${message}"></div>
+        </div>
+
         <div class="col-md-12 text-center">
             <h1>Login</h1>
         </div>
@@ -18,10 +23,6 @@
                     <div class="text-center"><input class="btn btn-primary" type="submit" value="Login"/></div>
                 </form>
             </div>
-        </div>
-
-        <div th:if="${message} != null">
-            <p><span th:text="${message}" /></p>
         </div>
     </div>
 
