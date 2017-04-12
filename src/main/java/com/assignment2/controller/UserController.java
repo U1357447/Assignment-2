@@ -128,7 +128,7 @@ public class UserController {
 
         List<Thread> threads = threadService.findAll();
         model.addAttribute("threads", threads);
-        return "index";
+        return "/user/admin";
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)

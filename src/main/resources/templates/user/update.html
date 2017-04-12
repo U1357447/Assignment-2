@@ -1,29 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <!--<meta charset="UTF-8">-->
-    <title>MaxThreads - Update</title>
-    <th:block th:include="fragments/header :: headitems"></th:block>
-</head>
-<body>
-    <div th:replace="fragments/header :: header"></div>
-    <h1>Update</h1>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layout/layout :: page">
+    <div th:fragment="content">
+        <div class="col-md-12" th:if="${message} != null">
+            <div class="alert alert-success" role="alert" th:if="${type} == 'success'" th:text="${message}"></div>
+            <div class="alert alert-danger" role="alert" th:if="${type} == 'danger'" th:text="${message}"></div>
+        </div>
 
-    <form action="#" th:action="@{/user/update}" th:object="${user}" method="post">
-        <input type="hidden" th:field="*{id}"/>
-        <p>First Name</p>
-        <input type="text" th:field="*{firstname}"/>
-        <p>Last Name</p>
-        <input type="text" th:field="*{lastname}"/>
-        <p>Username</p>
-        <input type="text" th:field="*{username}"/>
-        <p>Password</p>
-        <input type="text" th:field="*{password}"/>
-        <br/><br/>
+        <div class="col-md-12 text-center">
+            <h1>Registration</h1>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="well col-md-6">
+            <div class="form-group">
+                <form action="#" th:action="@{/user/update}" th:object="${user}" method="post">
+                    <input type="hidden" th:field="*{id}"/>
+                    <label class="form-check-label">First Name</label>
+                    <input class="form-control" type="text" th:field="*{firstname}"/><br/>
+                    <label class="form-check-label">Last Name</label>
+                    <input class="form-control" type="text" th:field="*{lastname}"/><br/>
+                    <label class="form-check-label">Username</label>
+                    <input class="form-control" type="text" th:field="*{username}"/><br/>
+                    <label class="form-check-label">Change Password</label>
+                    <input class="form-control" type="password" th:field="*{password}"/><br/>
+                    <label class="form-check-label">Admin </label>
+                    <input type="checkbox" th:id="token" th:name="token" th:value="'ADMIN'"/>
 
-        <input type="submit" value="Update"/>
-    </form>
+                    <input type="hidden" th:field="*{ban}"/>
 
-    <div th:replace="fragments/footer :: footer"></div>
-</body>
+                    <br/><br/>
+
+                    <div class="text-center"><input class="btn btn-primary" type="submit" value="Update User Details"/></div>
+                </form>
+            </div>
+        </div>
+    </div>
 </html>
