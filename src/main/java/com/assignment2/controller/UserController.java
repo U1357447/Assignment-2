@@ -107,4 +107,10 @@ public class UserController {
         userService.save(user);
         return "redirect:/";
     }
+
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String admin(Model model){
+        model.addAttribute("users", userService.findAll());
+        return "user/admin";
+    }
 }

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layout/layout :: page">
+
+    <div th:fragment="content">
+        <div th:if="${session.admin == true}">
+            <div class="well">
+                <h1>Administrator Tools</h1>
+
+
+            </div>
+        </div>
+    </div>
+</html>

@@ -33,7 +33,7 @@
                             </ul>
                         </li>
                         <li th:if="${session.admin == true}">
-                            <a href="#">Administrator Tools</a>
+                            <a th:href="@{/user/admin}">Administrator Tools</a>
                         </li>
                     </ul>
                 </div>
