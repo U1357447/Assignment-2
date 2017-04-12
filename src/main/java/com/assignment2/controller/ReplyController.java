@@ -20,21 +20,14 @@ import javax.validation.Valid;
  * Created by u1357447 on 07/04/17.
  */
 @Controller
+@RequestMapping(value = "/thread/reply")
 public class ReplyController {
     @Autowired
     ThreadService threadService;
     @Autowired
     ReplyService replyService;
 
-    @RequestMapping(value = "/{thread}", method = RequestMethod.GET)
-    public String viewThread(Model model, @PathVariable Thread thread){
-        model.addAttribute("reply", new Reply());
-        model.addAttribute("replies", thread.getReplies());
-        model.addAttribute("thread", thread);
-        return "threads/viewThread";
-    }
-
-    @RequestMapping(value = "/reply/{thread}", method = RequestMethod.GET)
+    @RequestMapping(value = "/create/{thread}", method = RequestMethod.GET)
     public String reply(Model model, @PathVariable Thread thread){
         model.addAttribute("reply", new Reply());
         model.addAttribute("replies", thread.getReplies());
@@ -42,7 +35,7 @@ public class ReplyController {
         return "replies/createReply";
     }
 
-    @RequestMapping(value = "/reply/{thread}", method = RequestMethod.POST)
+    @RequestMapping(value = "/create/{thread}", method = RequestMethod.POST)
     public String createReply(Model model, @PathVariable Thread thread, @Valid @ModelAttribute("reply") Reply reply, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             model.addAttribute("reply", reply);

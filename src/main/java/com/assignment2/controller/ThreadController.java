@@ -1,5 +1,6 @@
 package com.assignment2.controller;
 
+import com.assignment2.domain.Reply;
 import com.assignment2.domain.Thread;
 import com.assignment2.service.ThreadService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,14 @@ import javax.validation.Valid;
 public class ThreadController {
     @Autowired
     ThreadService threadService;
+
+    @RequestMapping(value = "/{thread}", method = RequestMethod.GET)
+    public String viewThread(Model model, @PathVariable Thread thread){
+        model.addAttribute("reply", new Reply());
+        model.addAttribute("replies", thread.getReplies());
+        model.addAttribute("thread", thread);
+        return "threads/viewThread";
+    }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String createView(Model model, HttpSession session){
