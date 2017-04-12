@@ -14,6 +14,11 @@
             <div class="panel-heading clearfix">
                 <h3>Threads</h3>
             </div>
+            <div class="panel-body" th:if="${threads.isEmpty()}">
+                <div class="alert alert-danger" role="alert">
+                    <p>No threads have been created yet.</p>
+                </div>
+            </div>
             <div class="panel-body" th:each="thread : ${threads}">
                 <a th:href="'/' + ${thread.threadID}"><h2 th:text="${thread.heading}"></h2></a>
                 <div class="col-md-9" th:text="${thread.content}"></div>
@@ -26,6 +31,7 @@
                     <span th:text="'Created at: '  + ${thread.timeCreated}"></span><br/>
                     <span th:text="'Last Updated: '  + ${thread.timeUpdated}"></span>
                 </div>
+                <div class="col-md-12"><hr style="border-top:1px solid lightgray"/></div>
             </div>
         </div>
     </div>
