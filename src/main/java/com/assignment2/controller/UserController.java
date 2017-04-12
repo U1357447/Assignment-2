@@ -119,7 +119,9 @@ public class UserController {
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(Model model){
         UserSearchForm searchForm = new UserSearchForm();
+        List<User> users = userService.findAll();
         model.addAttribute("searchCriteria", searchForm);
+        model.addAttribute("searchedUsers", users);
         model.addAttribute("users", userService.findAll());
         return "user/admin";
     }

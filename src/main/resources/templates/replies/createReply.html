@@ -11,7 +11,7 @@
                 <div class="form-group">
                     <form action="#" th:action="@{/reply/create/}+${thread.threadID}" th:object="${reply}" method="post">
                         <label class="form-check-label">Reply</label>
-                        <textarea rows="5" type="text" th:field="*{content}"/>
+                        <textarea rows="5" class="form-control" type="text" th:field="*{content}"/>
 
                         <input type="hidden" th:id="threadID" th:name="threadID" th:value="${thread.threadID}"/>
                         <input type="hidden" th:id="ownerID" th:name="ownerID" th:value="${session.login}"/>
