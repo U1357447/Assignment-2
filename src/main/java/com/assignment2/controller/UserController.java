@@ -1,8 +1,7 @@
 package com.assignment2.controller;
-import com.assignment2.domain.LoginForm;
+import com.assignment2.domain.*;
 import com.assignment2.domain.Thread;
-import com.assignment2.domain.User;
-import com.assignment2.domain.UserSearchForm;
+import com.assignment2.service.ReplyService;
 import com.assignment2.service.ThreadService;
 import com.assignment2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +24,8 @@ public class UserController {
     UserService userService;
     @Autowired
     ThreadService threadService;
+    @Autowired
+    ReplyService replyService;
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerView(Model model){
@@ -115,7 +116,9 @@ public class UserController {
     @RequestMapping(value = "/{user}", method = RequestMethod.GET)
     public String AccountView(Model model, @PathVariable User user){
         List<Thread> threads = threadService.findAllByUser(user);
+        List<Reply> replies = replyService.findAllByUser(user);
         model.addAttribute("threads", threads);
+        model.addAttribute("replies", replies);
         model.addAttribute("user", user);
         return "user/viewAccount";
     }

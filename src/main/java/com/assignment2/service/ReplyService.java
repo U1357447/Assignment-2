@@ -2,6 +2,7 @@ package com.assignment2.service;
 
 import com.assignment2.domain.Reply;
 import com.assignment2.domain.ReplyRepository;
+import com.assignment2.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +24,10 @@ public class ReplyService {
 
     public List<Reply> findAll() {
         return replyRepository.findAll();
+    }
+
+    public List<Reply> findAllByUser(User user) {
+        String id = user.getId().toString();
+        return replyRepository.findAllByUser(id);
     }
 }
