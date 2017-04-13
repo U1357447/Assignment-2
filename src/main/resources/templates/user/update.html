@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layout/layout :: page">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layout/layout :: page" class="html">
     <div th:fragment="content">
         <div class="col-md-12" th:if="${message} != null">
             <div class="alert alert-success" role="alert" th:if="${type} == 'success'" th:text="${message}"></div>

@@ -5,7 +5,7 @@
         <th:block th:replace="fragments/header :: headitems"></th:block>
     </head>
     <body class="body">
-        <div class="web" id="app">
+        <div class="web">
             <div th:replace="fragments/header :: header"/>
 
             <div class="container">
@@ -16,7 +16,8 @@
                 </div>
             </div>
 
-            <div th:replace="fragments/footer :: footer"/>
+
         </div>
+        <div th:replace="fragments/footer :: footer"/>
     </body>
 </html>
