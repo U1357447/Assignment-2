@@ -35,7 +35,8 @@
                     <div th:if="${session.admin} == true">
                         <br/><a th:href="@{/thread/delete/} + ${thread.threadID}" class="btn btn-danger">Delete as Administrator</a><br/>
                     </div>
-                    <span th:text="'Created by: '  + ${thread.ownerName}"></span><br/>
+                    <span th:text="'Created by: '"></span>
+                    <a th:text="${thread.ownerName}" th:href="@{/user/} + ${thread.ownerID}"></a><br/>
                     <span th:text="'Created at: '  + ${thread.timeCreated}"></span><br/>
                     <span th:text="'Last Updated: '  + ${thread.timeUpdated}"></span>
                 </div>
