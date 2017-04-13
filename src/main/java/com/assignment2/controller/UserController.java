@@ -111,4 +111,12 @@ public class UserController {
         session.removeAttribute("admin");
         return "redirect:/";
     }
+
+    @RequestMapping(value = "/{user}", method = RequestMethod.GET)
+    public String AccountView(Model model, @PathVariable User user){
+        List<Thread> threads = threadService.findAllByUser(user);
+        model.addAttribute("threads", threads);
+        model.addAttribute("user", user);
+        return "user/viewAccount";
+    }
 }

@@ -2,6 +2,7 @@ package com.assignment2.service;
 
 import com.assignment2.domain.Thread;
 import com.assignment2.domain.ThreadRepository;
+import com.assignment2.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +24,10 @@ public class ThreadService {
 
     public List<Thread> findAll() {
         return threadRepository.findAll();
+    }
+
+    public List<Thread> findAllByUser(User user) {
+        Long id = user.getId();
+        return threadRepository.findAllByUser(id);
     }
 }
