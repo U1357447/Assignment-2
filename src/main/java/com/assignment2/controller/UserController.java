@@ -105,7 +105,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logoutView(Model model, HttpSession session){
+    public String logoutView(HttpSession session){
         session.removeAttribute("login");
         session.removeAttribute("loginName");
         session.removeAttribute("admin");

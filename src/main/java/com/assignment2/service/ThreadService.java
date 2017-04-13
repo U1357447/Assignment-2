@@ -27,7 +27,7 @@ public class ThreadService {
     }
 
     public List<Thread> findAllByUser(User user) {
-        Long id = user.getId();
+        String id = user.getId().toString();
         return threadRepository.findAllByUser(id);
     }
 }
