@@ -73,7 +73,7 @@
                             <a th:href="@{/reply/delete/} + ${reply.threadID} + '/' + ${reply.replyID}" class="btn btn-danger">Delete</a><br/>
                         </div>
                         <div th:if="${session.admin} == true">
-                            <br/><a th:href="@{/reply/delete/} + ${thread.threadID} + '/' + ${reply.replyID}" class="btn btn-danger">Delete as Administrator</a><br/>
+                            <br/><a th:href="@{/reply/delete/} + ${reply.threadID} + '/' + ${reply.replyID}" class="btn btn-danger">Delete as Administrator</a><br/>
                         </div>
                         <span th:text="'Created by: ' + ${reply.ownerName}"></span><br/>
                         <span th:text="'Created at: '  + ${reply.timeCreated}"></span><br/>
