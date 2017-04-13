@@ -12,7 +12,7 @@
         <div class="col-md-3"></div>
         <div class="well col-md-6">
             <div class="form-group">
-                <form action="#" th:action="@{/user/update/} + ${user.id}" th:object="${user}" method="post">
+                <form action="#" th:action="@{/admin/update/} + ${user.id}" th:object="${user}" method="post">
                     <input type="hidden" th:field="*{id}"/>
                     <label class="form-check-label">First Name</label>
                     <input class="form-control" type="text" th:field="*{firstname}"/><br/>

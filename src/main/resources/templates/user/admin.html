@@ -17,7 +17,7 @@
                     <div class="well col-md-6">
                         <h3 class="text-center">Filter Users</h3><br/>
                         <div class="form-group">
-                            <form th:action="@{/user/admin}" th:object="${searchCriteria}" th:method="post">
+                            <form th:action="@{/admin}" th:object="${searchCriteria}" th:method="post">
                                 <label>Last Name: </label>
                                 <input class="form-control" type="text" th:field="*{lastname}"/>
                                 <br/>
@@ -39,10 +39,10 @@
                             <td th:text="${user.lastname}"></td>
                             <td th:text="${user.username}"></td>
                             <td>
-                                <a class="btn btn-primary" th:href="@{/user/update/} + ${user.id}" type="submit">Edit</a>
+                                <a class="btn btn-primary" th:href="@{/admin/update/} + ${user.id}" type="submit">Edit</a>
                             </td>
                             <td>
-                                <form th:action="@{/user/admin/ban/} + ${user.id}" th:object="${user}" th:method="post">
+                                <form th:action="@{/admin/ban/} + ${user.id}" th:object="${user}" th:method="post">
                                     <input class="btn btn-primary" type="submit" th:if="${user.ban == false}" th:value="'Ban'"/>
                                     <input class="btn btn-primary" type="submit" th:if="${user.ban == true}" th:value="'Unban'"/>
                                 </form>
