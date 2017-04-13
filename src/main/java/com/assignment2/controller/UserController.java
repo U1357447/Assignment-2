@@ -109,7 +109,7 @@ public class UserController {
         session.removeAttribute("login");
         session.removeAttribute("loginName");
         session.removeAttribute("admin");
-        return "redirect:/user/login";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/delete/{user}", method = RequestMethod.GET)
