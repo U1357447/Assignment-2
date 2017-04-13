@@ -15,10 +15,13 @@
             </div>
         </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading clearfix">
-                <h2 th:text="${thread.heading}"></h2>
-                <div class="col-md-9"><pre><div  th:text="${thread.content}"/></pre></div>
+        <!-- Thread -->
+        <div class="panel panel-default well">
+            <div class="panel-heading">
+                <h2 class="text-center" th:text="${thread.heading}"></h2>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-9"><pre><div th:text="${thread.content}"/></pre></div>
 
                 <div class="pull-right">
                     <span th:text="'Created by: '"></span>
@@ -27,33 +30,35 @@
                     <span th:text="'Last Updated: '  + ${thread.timeUpdated}"></span>
                 </div>
             </div>
+        </div>
 
-            <div class="panel-body">
-                <div class="panel-body"><h3>Replies</h3></div>
-                <hr style="border-top:1px solid lightgray"/>
+        <!-- Thread Replies Container -->
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix"><h3>Replies</h3></div>
 
-                <div class="panel-body" th:if="${replies.isEmpty()}">
-                    <div class="alert alert-danger" role="alert">
-                        <p>No replies have been added to this thread yet.</p>
-                    </div>
+            <div class="panel-body" th:if="${replies.isEmpty()}">
+                <!-- No Replies -->
+                <div class="alert alert-danger" role="alert">
+                    <p>No replies have been added to this thread yet.</p>
                 </div>
-                <div class="panel-body" th:each="reply : ${replies}">
-                    <div class="col-md-9"><pre><div th:text="${reply.content}"/></pre></div>
-                    <div class="col-md-3">
-                        <div th:if="${reply.ownerID} == ${session.login}">
-                            <a th:href="@{/reply/edit/} + ${thread.threadID} + '/' + ${reply.replyID}" class="btn btn-primary">&#160;&#160;Edit&#160;&#160;</a>
-                            <a th:href="@{/reply/delete/} + ${thread.threadID} + '/' + ${reply.replyID}" class="btn btn-danger">Delete</a><br/>
-                        </div>
-                        <div th:if="${session.admin} == true">
-                            <br/><a th:href="@{/reply/delete/} + ${thread.threadID} + '/' + ${reply.replyID}" class="btn btn-danger">Delete as Administrator</a><br/>
-                        </div>
-                        <span th:text="'Created by: '"></span>
-                        <a th:text="${reply.ownerName}" th:href="@{/user/} + ${reply.ownerID}"></a><br/>
-                        <span th:text="'Created at: '  + ${reply.timeCreated}"></span><br/>
-                        <span th:text="'Last Updated: '  + ${reply.timeUpdated}"></span>
+            </div>
+            <!-- Replies -->
+            <div class="panel-body" th:each="reply : ${replies}">
+                <div class="col-md-9"><pre><div th:text="${reply.content}"/></pre></div>
+                <div class="col-md-3">
+                    <div th:if="${reply.ownerID} == ${session.login}">
+                        <a th:href="@{/reply/edit/} + ${thread.threadID} + '/' + ${reply.replyID}" class="btn btn-primary">&#160;&#160;Edit&#160;&#160;</a>
+                        <a th:href="@{/reply/delete/} + ${thread.threadID} + '/' + ${reply.replyID}" class="btn btn-danger">Delete</a><br/>
                     </div>
-                    <div class="col-md-12"><hr style="border-top:1px solid lightgray"/></div>
+                    <div th:if="${session.admin} == true">
+                        <br/><a th:href="@{/reply/delete/} + ${thread.threadID} + '/' + ${reply.replyID}" class="btn btn-danger">Delete as Administrator</a><br/>
+                    </div>
+                    <span th:text="'Created by: '"></span>
+                    <a th:text="${reply.ownerName}" th:href="@{/user/} + ${reply.ownerID}"></a><br/>
+                    <span th:text="'Created at: '  + ${reply.timeCreated}"></span><br/>
+                    <span th:text="'Last Updated: '  + ${reply.timeUpdated}"></span>
                 </div>
+                <div class="col-md-12"><hr style="border-top:1px solid lightgray"/></div>
             </div>
         </div>
     </div>

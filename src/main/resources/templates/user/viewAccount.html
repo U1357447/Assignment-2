@@ -7,10 +7,12 @@
             <div class="alert alert-danger" role="alert" th:if="${type} == 'danger'" th:text="${message}"></div>
         </div>
 
-        <div class="well">
-            <h1 th:text="${user.firstname} + ' ' + ${user.lastname}"></h1>
+        <div class="well text-center">
+            <h1 th:text="${user.firstname} + ' ' + ${user.lastname} + '`s Account'"></h1>
+            <p th:text="'Welcome to ' + ${user.firstname} + '`s profile. The threads and replies created by the user are displayed below'"></p>
         </div>
 
+        <!-- Threads Container -->
         <div class="panel panel-default">
             <div class="panel-heading clearfix text-center">
                 <h3 th:text="${user.firstname} + '`s Threads'"></h3>
@@ -18,11 +20,13 @@
             </div>
 
             <div class="panel-body" th:if="${threads.isEmpty()}">
+                <!-- No Threads -->
                 <div class="alert alert-danger" role="alert">
                     <p>The user hasn't created any thread yet</p>
                 </div>
             </div>
             <div id="thread" class="panel-body collapse" th:if="${!(threads.isEmpty())}">
+                <!-- Threads -->
                 <div class="panel-body" th:each="thread : ${threads}">
                     <a th:href="@{/thread/} + ${thread.threadID}"><h2 th:text="${thread.heading}"></h2></a>
                     <div class="col-md-9"><pre><div th:text="${thread.content}"/></pre></div>
@@ -43,19 +47,26 @@
             </div>
         </div>
 
+        <!-- Replies Container -->
         <div class="panel panel-default">
             <div class="panel-heading clearfix text-center">
                 <h3 th:text="${user.firstname} + '`s Replies'"></h3>
                 <button th:if="${!(replies.isEmpty())}" type="button" class="btn btn-info" data-toggle="collapse" data-target="#reply">Expand/Collapse</button>
             </div>
+
             <div class="panel-body" th:if="${replies.isEmpty()}">
+                <!-- No Replies -->
                 <div class="alert alert-danger" role="alert">
                     <p>The user hasn't made any replies yet.</p>
                 </div>
             </div>
-            <div id="reply" class="panel-body collapse" th:if="${!(threads.isEmpty())}">
+            <div id="reply" class="panel-body collapse" th:if="${!(replies.isEmpty())}">
+                <!-- Replies -->
                 <div class="panel-body" th:each="reply : ${replies}">
-                    <div class="col-md-9"><pre><div th:text="${reply.content}"/></pre></div>
+                    <div class="col-md-9">
+                        <a th:href="@{/thread/} + ${reply.threadID}">Go to thread</a>
+                        <pre><div th:text="${reply.content}"/></pre>
+                    </div>
                     <div class="col-md-3">
                         <div th:if="${reply.ownerID} == ${session.login}">
                             <a th:href="@{/reply/edit/} + ${reply.threadID} + '/' + ${reply.replyID}" class="btn btn-primary">&#160;&#160;Edit&#160;&#160;</a>
