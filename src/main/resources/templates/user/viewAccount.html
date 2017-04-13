@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layout/layout :: page" class="html">
+
+    <div th:fragment="content">
+        <div th:if="${message} != null">
+            <div class="alert alert-success" role="alert" th:if="${type} == 'success'" th:text="${message}"></div>
+            <div class="alert alert-danger" role="alert" th:if="${type} == 'danger'" th:text="${message}"></div>
+        </div>
+
+        <div class="well">
+            <h1 th:text="${user.firstname} + ' ' + ${user.lastname}"></h1>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3>Threads created by user</h3>
+            </div>
+            <div class="panel-body" th:if="${threads.isEmpty()}">
+                <div class="alert alert-danger" role="alert">
+                    <p>The user hasn't created any thread yet</p>
+                </div>
+            </div>
+            <div class="panel-body" th:each="thread : ${threads}">
+                <a th:href="@{/thread/} + ${thread.threadID}"><h2 th:text="${thread.heading}"></h2></a>
+                <div class="col-md-9"><pre><div th:text="${thread.content}"/></pre></div>
+                <div class="col-md-3">
+                    <div th:if="${thread.ownerID} == ${session.login}">
+                        <a th:href="@{/thread/edit/} + ${thread.threadID}" class="btn btn-primary">&#160;&#160;Edit&#160;&#160;</a>
+                        <a th:href="@{/thread/delete/} + ${thread.threadID}" class="btn btn-danger">Delete</a><br/>
+                    </div>
+                    <div th:if="${session.admin} == true">
+                        <br/><a th:href="@{/thread/delete/} + ${thread.threadID}" class="btn btn-danger">Delete as Administrator</a><br/>
+                    </div>
+                    <span th:text="'Created by: '  + ${thread.ownerName}"></span><br/>
+                    <span th:text="'Created at: '  + ${thread.timeCreated}"></span><br/>
+                    <span th:text="'Last Updated: '  + ${thread.timeUpdated}"></span>
+                </div>
+                <div class="col-md-12"><hr style="border-top:1px solid lightgray"/></div>
+            </div>
+        </div>
+    </div>
+</html>
