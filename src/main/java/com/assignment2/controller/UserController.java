@@ -128,7 +128,7 @@ public class UserController {
     public String update(Model model, @ModelAttribute("user") User user){
         userService.save(user);
         model.addAttribute("type", "success");
-        model.addAttribute("message", "The thread has been updated successfully");
+        model.addAttribute("message", "The user has been updated successfully");
 
         UserSearchForm searchForm = new UserSearchForm();
         List<User> users = userService.findAll();
