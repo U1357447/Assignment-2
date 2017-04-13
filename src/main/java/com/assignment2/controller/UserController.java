@@ -92,12 +92,16 @@ public class UserController {
 
         Long id = userService.getUserID(user);
         String name = userService.getUserName(user);
+        Boolean admin = userService.isUserAdmin(user);
         session.setAttribute("login", id);
         session.setAttribute("loginName", name);
-        session.setAttribute("admin", userService.isUserAdmin(user));
+        session.setAttribute("admin", admin);
         Thread thread = new Thread();
         model.addAttribute("thread", thread);
-        return "redirect:/";
+
+        List<Thread> threads = threadService.findAll();
+        model.addAttribute("threads", threads);
+        return "index";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -126,9 +130,12 @@ public class UserController {
         model.addAttribute("type", "success");
         model.addAttribute("message", "The thread has been updated successfully");
 
-        List<Thread> threads = threadService.findAll();
-        model.addAttribute("threads", threads);
-        return "/user/admin";
+        UserSearchForm searchForm = new UserSearchForm();
+        List<User> users = userService.findAll();
+        model.addAttribute("searchCriteria", searchForm);
+        model.addAttribute("searchedUsers", users);
+        model.addAttribute("users", userService.findAll());
+        return "user/admin";
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)

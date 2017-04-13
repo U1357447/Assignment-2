@@ -23,7 +23,7 @@
                     <label class="form-check-label">Change Password</label>
                     <input class="form-control" type="password" th:field="*{password}"/><br/>
                     <label class="form-check-label">Admin </label>
-                    <input type="checkbox" th:id="token" th:name="token" th:value="'ADMIN'"/>
+                    <input class="form-control" type="text" th:field="*{isAdmin}"/>
 
                     <input type="hidden" th:field="*{ban}"/>
 
