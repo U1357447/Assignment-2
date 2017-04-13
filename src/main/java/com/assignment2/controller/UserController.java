@@ -124,7 +124,7 @@ public class UserController {
         return "user/update";
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update/{user}", method = RequestMethod.POST)
     public String update(Model model, @ModelAttribute("user") User user){
         userService.save(user);
         model.addAttribute("type", "success");

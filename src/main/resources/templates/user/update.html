@@ -12,7 +12,7 @@
         <div class="col-md-3"></div>
         <div class="well col-md-6">
             <div class="form-group">
-                <form action="#" th:action="@{/user/update}" th:object="${user}" method="post">
+                <form action="#" th:action="@{/user/update/} + ${user.id}" th:object="${user}" method="post">
                     <input type="hidden" th:field="*{id}"/>
                     <label class="form-check-label">First Name</label>
                     <input class="form-control" type="text" th:field="*{firstname}"/><br/>
@@ -20,11 +20,10 @@
                     <input class="form-control" type="text" th:field="*{lastname}"/><br/>
                     <label class="form-check-label">Username</label>
                     <input class="form-control" type="text" th:field="*{username}"/><br/>
-                    <label class="form-check-label">Change Password</label>
-                    <input class="form-control" type="password" th:field="*{password}"/><br/>
                     <label class="form-check-label">Admin </label>
                     <input class="form-control" type="text" th:field="*{isAdmin}"/>
 
+                    <input type="hidden" th:field="*{password}"/>
                     <input type="hidden" th:field="*{ban}"/>
 
                     <br/><br/>
