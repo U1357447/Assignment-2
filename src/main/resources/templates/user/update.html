@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layout/layout :: page" class="html">
     <div th:fragment="content">
-        <div class="col-md-12" th:if="${message} != null">
-            <div class="alert alert-success" role="alert" th:if="${type} == 'success'" th:text="${message}"></div>
-            <div class="alert alert-danger" role="alert" th:if="${type} == 'danger'" th:text="${message}"></div>
-        </div>
+        <div th:if="${session.admin == true}">
+            <div class="col-md-12" th:if="${message} != null">
+                <div class="alert alert-success" role="alert" th:if="${type} == 'success'" th:text="${message}"></div>
+                <div class="alert alert-danger" role="alert" th:if="${type} == 'danger'" th:text="${message}"></div>
+            </div>
 
-        <div class="col-md-12 text-center">
-            <h1>Registration</h1>
-        </div>
-        <div class="col-md-3"></div>
-        <div class="well col-md-6">
-            <div class="form-group">
-                <form action="#" th:action="@{/admin/update/} + ${user.id}" th:object="${user}" method="post">
-                    <input type="hidden" th:field="*{id}"/>
-                    <label class="form-check-label">First Name</label>
-                    <input class="form-control" type="text" th:field="*{firstname}"/><br/>
-                    <label class="form-check-label">Last Name</label>
-                    <input class="form-control" type="text" th:field="*{lastname}"/><br/>
-                    <label class="form-check-label">Username</label>
-                    <input class="form-control" type="text" th:field="*{username}"/><br/>
-                    <label class="form-check-label">Admin </label>
-                    <input class="form-control" type="text" th:field="*{isAdmin}"/>
+            <div class="col-md-12 text-center">
+                <h1>Registration</h1>
+            </div>
+            <div class="col-md-3"></div>
+            <div class="well col-md-6">
+                <div class="form-group">
+                    <form action="#" th:action="@{/admin/update/} + ${user.id}" th:object="${user}" method="post">
+                        <input type="hidden" th:field="*{id}"/>
+                        <label class="form-check-label">First Name</label>
+                        <input class="form-control" type="text" th:field="*{firstname}"/><br/>
+                        <label class="form-check-label">Last Name</label>
+                        <input class="form-control" type="text" th:field="*{lastname}"/><br/>
+                        <label class="form-check-label">Username</label>
+                        <input class="form-control" type="text" th:field="*{username}"/><br/>
+                        <label class="form-check-label">Admin </label>
+                        <input class="form-control" type="text" th:field="*{isAdmin}"/>
 
-                    <input type="hidden" th:field="*{password}"/>
-                    <input type="hidden" th:field="*{ban}"/>
+                        <input type="hidden" th:field="*{password}"/>
+                        <input type="hidden" th:field="*{ban}"/>
 
-                    <br/><br/>
+                        <br/><br/>
 
-                    <div class="text-center"><input class="btn btn-primary" type="submit" value="Update User Details"/></div>
-                </form>
+                        <div class="text-center"><input class="btn btn-primary" type="submit" value="Update User Details"/></div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

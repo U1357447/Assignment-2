@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layout/layout :: page" class="html">
 
     <div th:fragment="content">
-        <div th:if="${session.login != null}">
+        <div th:if="${(session.login != null) or (reply.ownerID == session.login) or (session.admin == true)}">
             <div class="col-md-12" th:if="${message} != null">
                 <div class="alert alert-success" role="alert" th:if="${type} == 'success'" th:text="${message}"></div>
                 <div class="alert alert-danger" role="alert" th:if="${type} == 'danger'" th:text="${message}"></div>
